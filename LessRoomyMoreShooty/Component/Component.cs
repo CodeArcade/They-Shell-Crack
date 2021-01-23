@@ -22,6 +22,8 @@ namespace LessRoomyMoreShooty.Component
         #endregion
 
         #region Public Properties
+        
+        public States.State CurrentState { get; set; }
 
         public Vector2 Position
         {

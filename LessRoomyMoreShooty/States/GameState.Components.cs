@@ -8,7 +8,7 @@ namespace LessRoomyMoreShooty.States
 
         protected override void LoadComponents()
         {
-            Components.Add(new Component.Sprites.Player()
+            AddComponent(new Component.Sprites.Player()
             {
                 Position = new Vector2(200, 200)
             });

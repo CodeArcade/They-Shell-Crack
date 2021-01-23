@@ -27,13 +27,17 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public Player()
         {
-            Components = new List<Component>();
             Texture = ContentManager.PlayerTexture;
             CurrentHealth = 10;
-            MaxSpeed = 225;
+            MaxSpeed = 200;
             Acceleration = 100;
             MaxAmmo = 10;
-            CurrentAmmo = 10;
+            CurrentAmmo = MaxAmmo;
+            ReloadTimeInSeconds = 3;
+            AttackSpeedInSeconds = 0.25;
+            Spread = 3;
+            RangeInSeconds = 2;
+            ProjectileSpeed = 300;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -50,13 +54,23 @@ namespace LessRoomyMoreShooty.Component.Sprites
             CheckHealth();
             Move();
             if (CurrentAmmo <= 0)
-            {
-                // Reload();
-            }
+                Reload(gameTime);
             else
-                Shoot();
+                Shoot(gameTime);
 
             base.Update(gameTime);
+        }
+
+        private void Reload(GameTime gameTime)
+        {
+            if (CurrentReloadTimeSeconds >= ReloadTimeInSeconds)
+            {
+                CurrentAmmo = MaxAmmo;
+                CurrentReloadTimeSeconds = 0;
+                return;
+            }
+
+            CurrentReloadTimeSeconds += gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         private void CheckHealth()
@@ -108,9 +122,15 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (Speed > 0) Speed -= Acceleration / 3;
         }
 
-        private void Shoot()
+        private void Shoot(GameTime gameTime)
         {
+            if (AttackSpeedTimer < AttackSpeedInSeconds)
+            {
+                AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                return;
+            }
 
+            AttackSpeedTimer = 0;
             Projectile projectile;
 
             if (IsKeyDown(ShootLeft))
@@ -133,7 +153,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             CurrentAmmo -= 1;
 
-            Components.Add(projectile);
+            CurrentState.AddComponent(projectile);
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)

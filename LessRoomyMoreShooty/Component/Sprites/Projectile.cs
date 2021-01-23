@@ -1,23 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
 
     public class Projectile : Sprite
     {
+        private double TTL { get; set; }
+        private double TimeLived { get; set; }
 
         public Projectile(Vector2 direction, Entity parent)
         {
             Parent = parent;
             Position = parent.MuzzlePoint;
-            Speed = 200;
+            Speed = parent.ProjectileSpeed;
             Direction = direction;
             Texture = ContentManager.ButtonTexture;
             Size = new System.Drawing.Size(10, 10);
+            TTL = parent.RangeInSeconds;
+
+            int spreadFactor = new Random().Next(-parent.Spread, parent.Spread);
+
+            if (Direction.Y == 0)
+            {
+                Direction = new Vector2(Direction.X, spreadFactor / 100f);
+            }
+            else
+            {
+                Direction = new Vector2(spreadFactor / 100f, Direction.Y);
+            }
+
         }
 
         public override void Update(GameTime gameTime)
         {
+            TimeLived += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (TimeLived >= TTL)
+            {
+                IsRemoved = true;
+                return;
+            }
+
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }

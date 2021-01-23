@@ -35,14 +35,20 @@ namespace LessRoomyMoreShooty.States
         public void Load() { Components = new List<Component.Component>(); LoadComponents(); OnLoad(); HasLoaded = true; }
 
         protected virtual void LoadComponents() { }
-        protected virtual void OnLoad() {  }
+        protected virtual void OnLoad() { }
+
+        public void AddComponent(Component.Component component)
+        {
+            component.CurrentState = this;
+            Components.Add(component);
+        }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Components is null) return;
-            foreach (Component.Component component in Components)
+            for (int i = Components.Count - 1; i >= 0; i--)
             {
-                component.Draw(gameTime, spriteBatch);
+                Components[i].Draw(gameTime, spriteBatch);
             }
         }
 
@@ -59,9 +65,10 @@ namespace LessRoomyMoreShooty.States
         {
             AudioManager.Update();
             if (Components is null) return;
-            foreach (Component.Component component in Components)
+
+            for (int i = Components.Count - 1; i >= 0; i--)
             {
-                component.Update(gameTime);
+                Components[i].Update(gameTime);
             }
 
             CollisionCheck(gameTime);

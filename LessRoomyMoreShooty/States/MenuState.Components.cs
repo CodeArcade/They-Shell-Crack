@@ -9,7 +9,7 @@ namespace LessRoomyMoreShooty.States
         protected override void LoadComponents()
         {
 
-            Components.Add(new Label(ContentManager.ButtonFont)
+            AddComponent(new Label(ContentManager.ButtonFont)
             {
                 Position = new Vector2(JamGame.ScreenWidth / 2, 100),
                 Text = "Gunfire Drier"
@@ -24,7 +24,7 @@ namespace LessRoomyMoreShooty.States
             {
                 StateManager.ChangeTo<GameState>(GameState.Name);
             };
-            Components.Add(button);
+            AddComponent(button);
         }
 
     }
