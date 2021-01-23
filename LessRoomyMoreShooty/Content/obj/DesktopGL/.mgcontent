@@ -5,12 +5,14 @@
   <Config />
   <SourceFiles>
     <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Fonts/ButtonFont.spritefont</File>
+    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Fonts/KenneyMini.spritefont</File>
     <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sound/Button.wav</File>
     <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sound/MinorSuccess.wav</File>
     <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</File>
     <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sprites/Player/Player.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -16,6 +16,7 @@ namespace LessRoomyMoreShooty.Manager
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");
         public SoundEffect ButtonClickSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Button");
         public SpriteFont ButtonFont => JamGame.Content.Load<SpriteFont>("Fonts/ButtonFont");
+        public SpriteFont KenneyMini => JamGame.Content.Load<SpriteFont>("Fonts/KenneyMini");
 
         //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
         //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");

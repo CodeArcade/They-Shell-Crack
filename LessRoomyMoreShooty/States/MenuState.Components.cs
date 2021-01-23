@@ -15,7 +15,7 @@ namespace LessRoomyMoreShooty.States
                 Text = "Gunfire Drier"
             });
 
-            Button button = new Button(ContentManager.ButtonTexture, ContentManager.ButtonFont)
+            Button button = new Button(ContentManager.ButtonTexture, ContentManager.KenneyMini)
             {
                 Position = new Vector2(JamGame.ScreenWidth / 2, 200),
                 Text = "Start"

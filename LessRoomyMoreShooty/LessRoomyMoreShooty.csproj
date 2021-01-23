@@ -10,6 +10,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Component\Sprites\Item\StatUpItems\DamageUpItem - Kopieren %282%29.cs" />
+    <Compile Remove="Component\Sprites\Item\StatUpItems\DamageUpItem - Kopieren.cs" />
+    <Compile Remove="Component\Sprites\Item\StatUpItems\StatUpItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Component\Controls\NewFile1.txt" />
     <None Remove="Component\Sprites\NewFile1.txt" />
     <None Remove="Icon.ico" />

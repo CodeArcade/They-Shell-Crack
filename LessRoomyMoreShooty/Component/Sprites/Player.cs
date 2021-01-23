@@ -1,14 +1,7 @@
 ﻿using LessRoomyMoreShooty.Manager;
-using LessRoomyMoreShooty.States;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
@@ -33,7 +26,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Acceleration = 100;
             MaxAmmo = 10;
             CurrentAmmo = MaxAmmo;
-            ReloadTimeInSeconds = 3;
+            ReloadTimeInSeconds = 0.8;
             AttackSpeedInSeconds = 0.25;
             Spread = 3;
             RangeInSeconds = 2;
@@ -130,7 +123,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 return;
             }
 
-            AttackSpeedTimer = 0;
             Projectile projectile;
 
             if (IsKeyDown(ShootLeft))
@@ -149,16 +141,21 @@ namespace LessRoomyMoreShooty.Component.Sprites
             {
                 projectile = new Projectile(new Vector2(0, 1), this);
             }
-            else return;
+            else { return; }
 
             CurrentAmmo -= 1;
+            AttackSpeedTimer = 0;
 
             CurrentState.AddComponent(projectile);
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)
         {
-
+            if(sprite is Item.Item && !sprite.IsRemoved)
+            {
+                sprite.IsRemoved = true;
+                ((Item.Item)sprite).OnPickup(this);
+            }
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using LessRoomyMoreShooty.Component.Controls;
+using LessRoomyMoreShooty.Component.Sprites.Item;
 
 namespace LessRoomyMoreShooty.States
 {
@@ -12,6 +12,24 @@ namespace LessRoomyMoreShooty.States
             {
                 Position = new Vector2(200, 200)
             });
+
+            AddComponent(new AmmoUpItem()
+            {
+                Position = new Vector2(500, 200)
+            });
+
+            AddComponent(new DamageUpItem()
+            {
+                Position = new Vector2(700, 200)
+            });
+
+            for (int i = 0; i < 5; i++)
+            {
+                AddComponent(new AttackSpeedUpItem()
+                {
+                    Position = new Vector2(200, 500)
+                });
+            }
         }
 
     }

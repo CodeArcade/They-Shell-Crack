@@ -50,6 +50,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             if (sprite == Parent) return;
             if (sprite == this) return;
+            if (sprite is Projectile) return;
             if (!(sprite is Entity)) return;
 
             ((Entity)sprite).CurrentHealth -= ((Entity)Parent).Damage;
