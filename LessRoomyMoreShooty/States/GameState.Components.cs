@@ -25,7 +25,7 @@ namespace LessRoomyMoreShooty.States
 
             for (int i = 0; i < 5; i++)
             {
-                AddComponent(new AttackSpeedUpItem()
+                AddComponent(new MovementSpeedUpItem()
                 {
                     Position = new Vector2(200, 500)
                 });

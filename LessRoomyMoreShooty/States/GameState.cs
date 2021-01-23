@@ -13,9 +13,11 @@ namespace LessRoomyMoreShooty.States
     {
         public static string Name = "Game";
 
+        private int Level { get; set; }
+
         protected override void OnLoad()
         {
-
+            Level = 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -37,6 +39,16 @@ namespace LessRoomyMoreShooty.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
+        }
+
+        private void StartLevel()
+        {
+            
+        }
+
+        private void CheckLevelFinished() 
+        { 
+
         }
 
     }

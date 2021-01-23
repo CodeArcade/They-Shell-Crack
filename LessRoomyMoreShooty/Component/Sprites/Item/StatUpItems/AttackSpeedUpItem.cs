@@ -2,7 +2,7 @@
 {
     public class AttackSpeedUpItem : Item
     {
-        public AttackSpeedUpItem() : base("Attack Speed Up", "Attack Speed +1 | Spread +5")
+        public AttackSpeedUpItem() : base("Attack Speed Up", "Attack Speed Up | Increased Spray")
         {
             Texture = ContentManager.ButtonTexture;
         }

@@ -2,7 +2,7 @@
 {
     public class AmmoUpItem : Item
     {
-        public AmmoUpItem() : base("Ammo Up", "Ammo +1 | Reload Speed +0.25")
+        public AmmoUpItem() : base("Ammo Up", "Ammo Up | Reloading takes longer")
         {
             Texture =  ContentManager.ButtonTexture;
         }

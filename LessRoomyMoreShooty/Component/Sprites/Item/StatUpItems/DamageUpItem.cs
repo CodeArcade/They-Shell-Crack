@@ -2,7 +2,7 @@
 {
     public class DamageUpItem : Item
     {
-        public DamageUpItem() : base("Damage Up", "Damage +1 | Range -0.25")
+        public DamageUpItem() : base("Damage Up", "Damage Up | Range Down")
         {
             Texture = ContentManager.ButtonTexture;
         }
