@@ -10,8 +10,14 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Component\Controls\NewFile1.txt" />
+    <None Remove="Component\Sprites\NewFile1.txt" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="Manager\NewFile1.txt" />
+    <None Remove="Models\NewFile1.txt" />
+    <None Remove="States\GameState.Components.ts" />
+    <None Remove="States\NewFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -26,5 +32,6 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="Unity" Version="5.11.9" />
   </ItemGroup>
 </Project>

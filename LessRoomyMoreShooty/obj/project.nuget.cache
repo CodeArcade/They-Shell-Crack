@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "bOgXnP8dwpAa7IoH3LkyaXlDPyGyXivXCDDcswcukrUesTGDFGbwiOSfwDL8QVcFjpPIVddYXo/eb2UV0TBWNA==",
+  "dgSpecHash": "ecZbINz02F3qGb7Do++wbETc+J9mt8qN/KTp53BQhvSeGkuByOtUF0fLAcXwPk6yldF07W7McSVj4A8I0OmsOg==",
   "success": true,
   "projectFilePath": "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nils\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\Nils\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\Nils\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\Nils\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\Nils\\.nuget\\packages\\unity\\5.11.9\\unity.5.11.9.nupkg.sha512"
   ],
   "logs": []
 }
