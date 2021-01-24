@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
-    public class TestDummy : Entity
+    public class TestDummy : Enemy
     {
         public TestDummy()
         {

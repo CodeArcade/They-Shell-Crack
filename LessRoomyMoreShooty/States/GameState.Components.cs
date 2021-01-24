@@ -103,14 +103,12 @@ namespace LessRoomyMoreShooty.States
             {
                 Position = new Vector2(70, 404),
                 Size = new Size(20, 100),
-                IsOpen = true
             };
 
             RightDoor = new Door()
             {
                 Position = new Vector2(JamGame.ScreenWidth - 90, 404),
                 Size = new Size(20, 100),
-                IsOpen = true
             };
 
             LeftDoor.Exit = RightDoor;
@@ -120,14 +118,12 @@ namespace LessRoomyMoreShooty.States
             { 
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 220),
                 Size = new Size(100, 20),
-                IsOpen = true 
             };
 
             BottomDoor = new Door() 
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698),
                 Size = new Size(100, 20),
-                IsOpen = true 
             };
 
             TopDoor.Exit = BottomDoor;
