@@ -12,13 +12,13 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             MaxHealth = 5;
             CurrentHealth = 5;
             Damage = 1;
-            AttackSpeedInSeconds = 0.5;
+            AttackSpeedInSeconds = 1;
             ProjectileSpeed = 300;
             MaxAmmo = 5;
             CurrentAmmo = 5;
             ReloadTimeInSeconds = 5;
-            RangeInSeconds = 3;
-            Spread = 5;
+            RangeInSeconds = 0.5;
+            Spread = 45;
             Texture = ContentManager.PlayerTexture;
         }
 

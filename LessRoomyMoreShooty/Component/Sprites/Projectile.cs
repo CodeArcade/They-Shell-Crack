@@ -1,5 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LessRoomyMoreShooty.Component.Sprites.Environment;
+using LessRoomyMoreShooty.Models;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
@@ -46,9 +50,20 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite == Parent) return;
             if (sprite == this) return;
             if (sprite is Projectile) return;
-            if (!(sprite is Entity)) return;
             if (IsRemoved) return;
 
+            if (sprite is Obstacle)
+            {
+                ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.ObstacleHitParticle, 5, 10);
+                AudioManager.PlayEffect(ContentManager.ObstacleHitSoundEffect, 0.25f);
+                IsRemoved = true;
+                return;
+            }
+
+            if (!(sprite is Entity)) return;
+
+            ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityHitParticle, 5, 10);
+            AudioManager.PlayEffect(ContentManager.EntityHitSoundEffect, 0.25f);
             ((Entity)sprite).CurrentHealth -= ((Entity)Parent).Damage;
             IsRemoved = true;
         }

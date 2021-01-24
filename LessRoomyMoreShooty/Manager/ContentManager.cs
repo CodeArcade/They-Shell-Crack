@@ -9,7 +9,7 @@ namespace LessRoomyMoreShooty.Manager
     public class ContentManager
     {
         [Dependency]
-        public JamGame JamGame { get; set;  }
+        public JamGame JamGame { get; set; }
 
         public Texture2D BackgroundTexture => JamGame.Content.Load<Texture2D>("Background/Background");
         public Texture2D PlayerTexture => JamGame.Content.Load<Texture2D>("Sprites/Player/Player");
@@ -24,6 +24,56 @@ namespace LessRoomyMoreShooty.Manager
         public Texture2D ArrowUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow");
         public Texture2D ClockTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock");
         public Texture2D TransparentTexture => JamGame.Content.Load<Texture2D>("Sprites/Misc/Transparent");
+
+        public SoundEffect ObstacleHitSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/ObstacleHit");
+        public SoundEffect EntityHitSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/EntityHit");
+        public SoundEffect EntityDeathSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/EntityDeath");
+        public SoundEffect ShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Shoot");
+
+        public List<Texture2D> ObstacleHitParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+            };
+        }
+
+        public List<Texture2D> EntityHitParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+            };
+        }
+
+        public List<Texture2D> EntityDeathParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+            };
+        }
+
+        public List<Texture2D> ShootParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+            };
+        }
+
 
         //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
         //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");

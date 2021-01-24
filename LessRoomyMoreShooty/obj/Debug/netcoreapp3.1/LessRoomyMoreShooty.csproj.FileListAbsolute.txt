@@ -73,3 +73,8 @@ D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.csprojAssemblyReference.cache
 D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Background\Background.xnb
 D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Misc\Transparent.xnb
+D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sound\EntityHit.xnb
+D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sound\ObstacleHit.xnb
+D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\ObstacleHit.xnb
+D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sound\EntityDeath.xnb
+D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sound\Shoot.xnb

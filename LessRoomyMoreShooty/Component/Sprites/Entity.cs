@@ -25,7 +25,15 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             CheckHealth();
 
-            if (CurrentAmmo <= 0) DoReload(gameTime);
+            if (CurrentAmmo <= 0)
+                DoReload(gameTime);
+            else
+                 if (AttackSpeedTimer < AttackSpeedInSeconds)
+                 {
+                    AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                    CanShoot = false;
+                 }
+                 else CanShoot = true;
 
             MuzzlePoint = Position;
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -50,6 +58,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
         protected void CheckHealth()
         {
             if (CurrentHealth > 0) return;
+
+            ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityDeathParticle, 5, 10);
+            AudioManager.PlayEffect(ContentManager.EntityDeathSoundEffect, 0.25f);
             IsRemoved = true;
         }
 
@@ -57,14 +68,11 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             if (!CanShoot) return;
 
-            if (AttackSpeedTimer < AttackSpeedInSeconds)
-            {
-                AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
-                return;
-            }
-
             CurrentAmmo -= 1;
             AttackSpeedTimer = 0;
+
+            ParticleManager.GenerateNewParticle(Color.White, MuzzlePoint, ContentManager.ShootParticle, 3, 5);
+            AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
 
             for (int i = 0; i < bulletCount; i++)
                 CurrentState.AddComponent(new Projectile(direction, this));
@@ -93,7 +101,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             {
                 Position = new Vector2(Position.X, Position.Y - (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds));
             }
-         
+
         }
 
     }

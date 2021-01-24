@@ -147,7 +147,7 @@ namespace LessRoomyMoreShooty.States
         private void AddWalls()
         {
             // Wall behind left door
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(50, 404),
                 Size = new Size(20, 100),
@@ -155,7 +155,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // Wall behind right door
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(JamGame.ScreenWidth - 70, 404),
                 Size = new Size(20, 100),
@@ -163,7 +163,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // Wall behind top door
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 200),
                 Size = new Size(100, 20),
@@ -171,7 +171,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // Wall behind bottom door
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698 + 20),
                 Size = new Size(100, 20),
@@ -179,7 +179,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // top left-> left middle
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(0, 220),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
@@ -187,7 +187,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // left midlle -> top right
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) + 50, 220),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
@@ -195,7 +195,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // top right -> bottom middle
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(JamGame.ScreenWidth - 90, 140),
                 Size = new Size(20, ((JamGame.ScreenHeight - 140) / 2) - 50),
@@ -203,7 +203,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // bottom middle -> bottom right
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(JamGame.ScreenWidth - 90, (JamGame.ScreenHeight / 2) + 50 + 70),
                 Size = new Size(20, ((JamGame.ScreenHeight - 70) / 2) - 50),
@@ -211,7 +211,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // bottom left-> bottom middle
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(0, JamGame.ScreenHeight - 70),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
@@ -219,7 +219,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // bottom midlle -> bottom right
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) + 50, JamGame.ScreenHeight - 70),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
@@ -227,7 +227,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // top left -> bottom middle
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(70, 140),
                 Size = new Size(20, ((JamGame.ScreenHeight - 140) / 2) - 50),
@@ -235,7 +235,7 @@ namespace LessRoomyMoreShooty.States
             });
 
             // bottom middle -> bottom left 
-            AddComponent(new Sprite()
+            AddComponent(new Obstacle()
             {
                 Position = new Vector2(70, (JamGame.ScreenHeight / 2) + 50 + 70),
                 Size = new Size(20, ((JamGame.ScreenHeight - 70) / 2) - 50),

@@ -36,7 +36,9 @@ namespace LessRoomyMoreShooty.Component
 
         public override void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            TTL -= 1;
+            Position = new Vector2(Position.X + Velocity.X, Position.Y + Velocity.Y);
+            Position = new Vector2(Position.X + AngularVelocity, Position.Y + AngularVelocity);
         }
     }
 }

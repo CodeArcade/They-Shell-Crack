@@ -3,36 +3,28 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LessRoomyMoreShooty.Component;
+using System.Linq;
 
 namespace LessRoomyMoreShooty.Manager
 {
     public class ParticleManager
     {
         private readonly Random Random;
-        public Vector2 EmitterLocation { get; set; }
 
-        private readonly List<Particle> Particles;
-        public List<Texture2D> Textures { get; set; }
+        private static List<Particle> Particles = new List<Particle>();
 
         public ParticleManager()
         {
             Random = new Random();
-            Particles = new List<Particle>();
         }
 
-        public ParticleManager(Vector2 emitterLocation, List<Texture2D> textures) : this()
-        {
-            EmitterLocation = emitterLocation;
-            Textures = textures;
-        }
-
-        public void GenerateNewParticle(Color color, int count = 1, int baseTtl = 20)
+        public void GenerateNewParticle(Color color, Vector2 emitterLocation, List<Texture2D> textures, int count = 1, int baseTtl = 20)
         {
             if (count <= 0) count = 1;
 
             for (int i = 0; i < count; i++)
             {
-                Texture2D texture = Textures[Random.Next(Textures.Count)];
+                Texture2D texture = textures[Random.Next(textures.Count())];
                 Vector2 velocity = new Vector2(
                     1f * (float)(Random.NextDouble() * 2 - 1),
                     1f * (float)(Random.NextDouble() * 2 - 1)
@@ -43,7 +35,7 @@ namespace LessRoomyMoreShooty.Manager
                 float size = (float)Random.NextDouble();
                 int ttl = baseTtl + Random.Next(baseTtl * 2);
 
-                Particle p = new Particle(velocity, EmitterLocation, angle, angularVelocity, size, ttl, color, texture);
+                Particle p = new Particle(velocity, emitterLocation, angle, angularVelocity, size, ttl, color, texture);
                 Particles.Add(p);
             }
         }
