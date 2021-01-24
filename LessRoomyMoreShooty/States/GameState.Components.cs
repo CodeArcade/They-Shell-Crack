@@ -99,13 +99,37 @@ namespace LessRoomyMoreShooty.States
 
         private void AddDoors()
         {
-            LeftDoor = new Door() { Position = new Vector2(0, 768 / 2), IsOpen = true };
-            RightDoor = new Door() { Position = new Vector2(1000, 768 / 2), IsOpen = true };
+            LeftDoor = new Door()
+            {
+                Position = new Vector2(70, 404),
+                Size = new Size(20, 100),
+                IsOpen = true
+            };
+
+            RightDoor = new Door()
+            {
+                Position = new Vector2(JamGame.ScreenWidth - 90, 404),
+                Size = new Size(20, 100),
+                IsOpen = true
+            };
+
             LeftDoor.Exit = RightDoor;
             RightDoor.Exit = LeftDoor;
 
-            TopDoor = new Door() { Position = new Vector2(1024 / 2, 300), IsOpen = true };
-            BottomDoor = new Door() { Position = new Vector2(1024 / 2, 700), IsOpen = true };
+            TopDoor = new Door() 
+            { 
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 220),
+                Size = new Size(100, 20),
+                IsOpen = true 
+            };
+
+            BottomDoor = new Door() 
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698),
+                Size = new Size(100, 20),
+                IsOpen = true 
+            };
+
             TopDoor.Exit = BottomDoor;
             BottomDoor.Exit = TopDoor;
 
@@ -122,12 +146,44 @@ namespace LessRoomyMoreShooty.States
 
         private void AddWalls()
         {
-            // top -> left middle
+            // Wall behind left door
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(50, 404),
+                Size = new Size(20, 100),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // Wall behind right door
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(JamGame.ScreenWidth - 70, 404),
+                Size = new Size(20, 100),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // Wall behind top door
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 200),
+                Size = new Size(100, 20),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // Wall behind bottom door
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698 + 20),
+                Size = new Size(100, 20),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // top left-> left middle
             AddComponent(new Sprite()
             {
                 Position = new Vector2(0, 220),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
-                Texture = ContentManager.ButtonTexture
+                Texture = ContentManager.TransparentTexture
             });
 
             // left midlle -> top right
@@ -135,7 +191,55 @@ namespace LessRoomyMoreShooty.States
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) + 50, 220),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
-                Texture = ContentManager.ButtonTexture
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // top right -> bottom middle
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(JamGame.ScreenWidth - 90, 140),
+                Size = new Size(20, ((JamGame.ScreenHeight - 140) / 2) - 50),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // bottom middle -> bottom right
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(JamGame.ScreenWidth - 90, (JamGame.ScreenHeight / 2) + 50 + 70),
+                Size = new Size(20, ((JamGame.ScreenHeight - 70) / 2) - 50),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // bottom left-> bottom middle
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(0, JamGame.ScreenHeight - 70),
+                Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // bottom midlle -> bottom right
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, JamGame.ScreenHeight - 70),
+                Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // top left -> bottom middle
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(70, 140),
+                Size = new Size(20, ((JamGame.ScreenHeight - 140) / 2) - 50),
+                Texture = ContentManager.TransparentTexture
+            });
+
+            // bottom middle -> bottom left 
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(70, (JamGame.ScreenHeight / 2) + 50 + 70),
+                Size = new Size(20, ((JamGame.ScreenHeight - 70) / 2) - 50),
+                Texture = ContentManager.TransparentTexture
             });
         }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -77,36 +78,61 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         protected bool IsTouchingRight(Sprite sprite)
         {
-            return Hitbox.Left < sprite.Hitbox.Right && Hitbox.Left > sprite.Hitbox.Left &&  // Sides collide
-                  !IsAbove(sprite) && !IsBelow(sprite) && !IsLeft(sprite);
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+            int distanceLeft = Math.Abs(Hitbox.Right- sprite.Hitbox.Left);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceRight < distanceLeft && distanceRight < distanceTop && distanceRight < distanceBottom;
         }
 
         protected bool IsTouchingLeft(Sprite sprite)
         {
-            return Hitbox.Right > sprite.Hitbox.Left && Hitbox.Right < sprite.Hitbox.Right && // Sides collide
-                   !IsAbove(sprite) && !IsBelow(sprite) && !IsRight(sprite);
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+            int distanceLeft = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceLeft < distanceRight && distanceLeft < distanceTop && distanceLeft < distanceBottom;
         }
 
         protected bool IsTouchingBottom(Sprite sprite)
         {
-            return Hitbox.Top < sprite.Hitbox.Bottom && Hitbox.Top > sprite.Hitbox.Top && // Sides collide
-                   !IsRight(sprite) && !IsLeft(sprite) && IsBelow(sprite);
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+            int distanceLeft = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceTop < distanceLeft && distanceTop < distanceBottom && distanceTop < distanceRight;
         }
 
         protected bool IsTouchingTop(Sprite sprite)
         {
-            return Hitbox.Bottom > sprite.Hitbox.Top && Hitbox.Bottom < sprite.Hitbox.Bottom && // Sides collide
-                   !IsRight(sprite) && !IsLeft(sprite) && IsAbove(sprite);
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+            int distanceLeft = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+            
+            return distanceBottom < distanceLeft && distanceBottom < distanceTop && distanceBottom < distanceRight;
         }
 
-        private bool IsAbove(Sprite sprite)
-        { return Hitbox.Bottom <= sprite.Hitbox.Top + sprite.HitBoxYOffSet; }
-        private bool IsBelow(Sprite sprite)
-        { return Hitbox.Top >= sprite.Hitbox.Bottom - sprite.HitBoxYOffSet; }
-        private bool IsRight(Sprite sprite)
-        { return Hitbox.Left >= sprite.Hitbox.Right; }
-        private bool IsLeft(Sprite sprite)
-        { return Hitbox.Right <= sprite.Hitbox.Left; }
+        private bool Collides(Sprite sprite)
+        {
+            return Hitbox.Intersects(sprite.Hitbox);
+        }
+
 
         #endregion
 

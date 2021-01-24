@@ -23,6 +23,7 @@ namespace LessRoomyMoreShooty.Manager
         public Texture2D BulletsTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets");
         public Texture2D ArrowUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow");
         public Texture2D ClockTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock");
+        public Texture2D TransparentTexture => JamGame.Content.Load<Texture2D>("Sprites/Misc/Transparent");
 
         //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
         //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");

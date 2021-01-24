@@ -75,21 +75,25 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite == this) return;
             if (sprite is Item.Item) return;
             if (sprite is Projectile) return;
-            if (sprite is Door) return;
+
+            if (IsTouchingLeft(sprite))
+            {
+                Position = new Vector2(Position.X - (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds), Position.Y);
+            }
+            if (IsTouchingRight(sprite))
+            {
+                Position = new Vector2(Position.X + (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds), Position.Y);
+            }
 
             if (IsTouchingBottom(sprite))
             {
-                Position = new Vector2(Position.X, Position.Y - 1);
-            } else if (IsTouchingTop(sprite))
-            {
-                Position = new Vector2(Position.X, Position.Y + 1 + Size.Height);
-            } else if (IsTouchingLeft(sprite))
-            {
-                Position = new Vector2(Position.X + 1, Position.Y);
-            } else if (IsTouchingRight(sprite))
-            {
-                Position = new Vector2(Position.X - 1 - Size.Width, Position.Y);
+                Position = new Vector2(Position.X, Position.Y + (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds));
             }
+            if (IsTouchingTop(sprite))
+            {
+                Position = new Vector2(Position.X, Position.Y - (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds));
+            }
+         
         }
 
     }
