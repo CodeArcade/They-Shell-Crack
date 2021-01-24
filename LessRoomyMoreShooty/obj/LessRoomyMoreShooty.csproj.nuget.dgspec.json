@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dev\\Source\\LessIsMore\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj": {}
+    "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj": {}
   },
   "projects": {
-    "D:\\Dev\\Source\\LessIsMore\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj": {
+    "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dev\\Source\\LessIsMore\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj",
+        "projectUniqueName": "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj",
         "projectName": "LessRoomyMoreShooty",
-        "projectPath": "D:\\Dev\\Source\\LessIsMore\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj",
-        "packagesPath": "C:\\Users\\larsg\\.nuget\\packages\\",
-        "outputPath": "D:\\Dev\\Source\\LessIsMore\\LessRoomyMoreShooty\\obj\\",
+        "projectPath": "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\LessRoomyMoreShooty.csproj",
+        "packagesPath": "C:\\Users\\Nils\\.nuget\\packages\\",
+        "outputPath": "D:\\Programmieren\\LessRoomyMoreShooty\\LessRoomyMoreShooty\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\larsg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nils\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

@@ -8,6 +8,7 @@ namespace LessRoomyMoreShooty.Component
 {
     public abstract class Component
     {
+
         #region Dependencies
 
         public AnimationManager AnimationManager { get; set; } = Program.UnityContainer.Resolve<AnimationManager>();

@@ -46,9 +46,11 @@ namespace LessRoomyMoreShooty.States
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Components is null) return;
-            for (int i = Components.Count - 1; i >= 0; i--)
+            // draw components from top to bottom
+            List<Component.Component> DrawOrder = Components.OrderByDescending(c => c.Position.Y).ToList();
+            for (int i = DrawOrder.Count - 1; i >= 0; i--)
             {
-                Components[i].Draw(gameTime, spriteBatch);
+                DrawOrder[i].Draw(gameTime, spriteBatch);
             }
         }
 
@@ -76,7 +78,7 @@ namespace LessRoomyMoreShooty.States
 
         private void CollisionCheck(GameTime gameTime)
         {
-            IEnumerable<Sprite> sprites = Components.Where(x => x is Sprite).Select(x => x as Sprite);
+            IEnumerable<Sprite> sprites = Components.Where(x => x is Sprite).Select(x => x as Sprite).ToList();
             foreach (Sprite sprite in sprites)
             {
                 foreach (Sprite sprite2 in sprites)

@@ -64,3 +64,4 @@ null
 - laser bullets (RTX ENABLED)
 - shotgun mode
 - shield item
+- piercing bullets

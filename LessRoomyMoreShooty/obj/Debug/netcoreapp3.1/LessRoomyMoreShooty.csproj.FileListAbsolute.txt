@@ -15,7 +15,6 @@ D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
-D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.csprojAssemblyReference.cache
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.AssemblyInfoInputs.cache
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.AssemblyInfo.cs
 D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.csproj.CoreCompileInputs.cache
@@ -66,3 +65,9 @@ D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Spr
 D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Bullets.xnb
 D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Arrow.xnb
 D:\Dev\Source\LessIsMore\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Clock.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Arrow.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Bullets.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Clock.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Sprites\Ui\Heart.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\bin\Debug\netcoreapp3.1\Content\Background\Background.xnb
+D:\Programmieren\LessRoomyMoreShooty\LessRoomyMoreShooty\obj\Debug\netcoreapp3.1\LessRoomyMoreShooty.csprojAssemblyReference.cache

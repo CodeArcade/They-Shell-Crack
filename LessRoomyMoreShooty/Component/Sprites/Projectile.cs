@@ -22,14 +22,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
             int spreadFactor = new Random().Next(-parent.Spread, parent.Spread);
 
             if (Direction.Y == 0)
-            {
                 Direction = new Vector2(Direction.X, spreadFactor / 100f);
-            }
             else
-            {
                 Direction = new Vector2(spreadFactor / 100f, Direction.Y);
-            }
-
         }
 
         public override void Update(GameTime gameTime)
@@ -52,6 +47,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite == this) return;
             if (sprite is Projectile) return;
             if (!(sprite is Entity)) return;
+            if (IsRemoved) return;
 
             ((Entity)sprite).CurrentHealth -= ((Entity)Parent).Damage;
             IsRemoved = true;

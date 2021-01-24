@@ -11,6 +11,7 @@ namespace LessRoomyMoreShooty.Manager
         [Dependency]
         public JamGame JamGame { get; set;  }
 
+        public Texture2D BackgroundTexture => JamGame.Content.Load<Texture2D>("Background/Background");
         public Texture2D PlayerTexture => JamGame.Content.Load<Texture2D>("Sprites/Player/Player");
 
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");

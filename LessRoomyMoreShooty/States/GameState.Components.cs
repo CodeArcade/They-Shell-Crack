@@ -2,13 +2,19 @@
 using LessRoomyMoreShooty.Component.Sprites.Item;
 using LessRoomyMoreShooty.Component.Controls;
 using LessRoomyMoreShooty.Component.Sprites;
+using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using System.Drawing;
+using LessRoomyMoreShooty.Component.Sprites.Environment;
 
 namespace LessRoomyMoreShooty.States
 {
     public partial class GameState : State
     {
         private Player Player { get; set; }
+        private Door LeftDoor { get; set; }
+        private Door RightDoor { get; set; }
+        private Door TopDoor { get; set; }
+        private Door BottomDoor { get; set; }
 
         protected override void LoadComponents()
         {
@@ -20,23 +26,8 @@ namespace LessRoomyMoreShooty.States
             };
             AddComponent(Player);
 
-            AddComponent(new AmmoUpItem()
-            {
-                Position = new Vector2(500, 200)
-            });
-
-            AddComponent(new DamageUpItem()
-            {
-                Position = new Vector2(700, 200)
-            });
-
-            for (int i = 0; i < 5; i++)
-            {
-                AddComponent(new MovementSpeedUpItem()
-                {
-                    Position = new Vector2(200, 500)
-                });
-            }
+            AddDoors();
+            AddWalls();
         }
 
         private void AddUi()
@@ -103,6 +94,48 @@ namespace LessRoomyMoreShooty.States
                 Name = "TimeLabel",
                 Position = new Vector2(690, 50),
                 FontScale = 1.5f
+            });
+        }
+
+        private void AddDoors()
+        {
+            LeftDoor = new Door() { Position = new Vector2(0, 768 / 2), IsOpen = true };
+            RightDoor = new Door() { Position = new Vector2(1000, 768 / 2), IsOpen = true };
+            LeftDoor.Exit = RightDoor;
+            RightDoor.Exit = LeftDoor;
+
+            TopDoor = new Door() { Position = new Vector2(1024 / 2, 300), IsOpen = true };
+            BottomDoor = new Door() { Position = new Vector2(1024 / 2, 700), IsOpen = true };
+            TopDoor.Exit = BottomDoor;
+            BottomDoor.Exit = TopDoor;
+
+            LeftDoor.PlayerEntered += PlayerEnteredDoor;
+            RightDoor.PlayerEntered += PlayerEnteredDoor;
+            TopDoor.PlayerEntered += PlayerEnteredDoor;
+            BottomDoor.PlayerEntered += PlayerEnteredDoor;
+
+            AddComponent(LeftDoor);
+            AddComponent(RightDoor);
+            AddComponent(TopDoor);
+            AddComponent(BottomDoor);
+        }
+
+        private void AddWalls()
+        {
+            // top -> left middle
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2(0, 220),
+                Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
+                Texture = ContentManager.ButtonTexture
+            });
+
+            // left midlle -> top right
+            AddComponent(new Sprite()
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, 220),
+                Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
+                Texture = ContentManager.ButtonTexture
             });
         }
 

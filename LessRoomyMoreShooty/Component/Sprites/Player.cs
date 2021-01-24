@@ -22,17 +22,19 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public Player()
         {
             Texture = ContentManager.PlayerTexture;
-            CurrentHealth = 10;
             MaxHealth = 10;
+            CurrentHealth = MaxHealth;
             MaxSpeed = 200;
             Acceleration = 100;
             MaxAmmo = 10;
             CurrentAmmo = MaxAmmo;
             ReloadTimeInSeconds = 0.8;
             AttackSpeedInSeconds = 0.25;
+            AttackSpeedTimer = AttackSpeedInSeconds;
             Spread = 3;
             RangeInSeconds = 2;
             ProjectileSpeed = 300;
+            Damage = 1;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -44,36 +46,17 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             CurrentKeyboard = Keyboard.GetState();
 
-            CheckHealth();
             Move();
 
-            if (CurrentAmmo <= 0 || IsKeyDown(Reload))
+            if ((IsKeyDown(Reload) && CanShoot))
             {
                 CurrentAmmo = 0;
                 DoReload(gameTime);
             }
-            else
-                Shoot(gameTime);
+
+            Shoot(gameTime);
 
             base.Update(gameTime);
-        }
-
-        private void DoReload(GameTime gameTime)
-        {
-            if (CurrentReloadTimeSeconds >= ReloadTimeInSeconds)
-            {
-                CurrentAmmo = MaxAmmo;
-                CurrentReloadTimeSeconds = 0;
-                return;
-            }
-
-            CurrentReloadTimeSeconds += gameTime.ElapsedGameTime.TotalSeconds;
-        }
-
-        private void CheckHealth()
-        {
-            if (CurrentHealth > 0) return;
-            IsRemoved = true;
         }
 
         private void Move()
@@ -121,36 +104,23 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         private void Shoot(GameTime gameTime)
         {
-            if (AttackSpeedTimer < AttackSpeedInSeconds)
-            {
-                AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
-                return;
-            }
-
-            Projectile projectile;
-
             if (IsKeyDown(ShootLeft))
             {
-                projectile = new Projectile(new Vector2(-1, 0), this);
+                Shoot(gameTime, new Vector2(-1, 0));
             }
             else if (IsKeyDown(ShootRight))
             {
-                projectile = new Projectile(new Vector2(1, 0), this);
+                Shoot(gameTime, new Vector2(1, 0));
             }
             else if (IsKeyDown(ShootUp))
             {
-                projectile = new Projectile(new Vector2(0, -1), this);
+                Shoot(gameTime, new Vector2(0, -1));
             }
             else if (IsKeyDown(ShootDown))
             {
-                projectile = new Projectile(new Vector2(0, 1), this);
+                Shoot(gameTime, new Vector2(0, 1));
             }
             else { return; }
-
-            CurrentAmmo -= 1;
-            AttackSpeedTimer = 0;
-
-            CurrentState.AddComponent(projectile);
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)
@@ -160,6 +130,8 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 sprite.IsRemoved = true;
                 ((Item.Item)sprite).OnPickup(this);
             }
+
+            base.OnCollision(sprite, gameTime);
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);

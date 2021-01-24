@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Component\Controls\NewFile1.txt" />
+    <None Remove="Component\Sprites\Environment\NewFile1.txt" />
     <None Remove="Component\Sprites\NewFile1.txt" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
