@@ -57,6 +57,12 @@
 /processorParam:Quality=Best
 /build:Sound/EntityHit.wav
 
+#begin Sound/ItemPickUp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/ItemPickUp.wav
+
 #begin Sound/LastBullet.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

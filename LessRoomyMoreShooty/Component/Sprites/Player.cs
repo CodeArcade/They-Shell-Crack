@@ -1,11 +1,10 @@
 ﻿using LessRoomyMoreShooty.Manager;
 using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Drawing;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
@@ -164,6 +163,8 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite is Item.Item && !sprite.IsRemoved)
             {
                 sprite.IsRemoved = true;
+                AudioManager.PlayEffect(ContentManager.ItemPickUpSoundEffect, 0.25f);
+                ParticleManager.GenerateNewParticle(Color.White, new Vector2(sprite.Position.X + (sprite.Size.Width / 2), sprite.Position.Y + (sprite.Size.Height / 2)) , ContentManager.ItemPickUpParticle, 10, 30);
                 ((Item.Item)sprite).OnPickup(this);
             }
 

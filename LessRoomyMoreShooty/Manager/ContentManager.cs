@@ -33,6 +33,7 @@ namespace LessRoomyMoreShooty.Manager
         public SoundEffect ShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Shoot");
         public SoundEffect ReloadSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Reload");
         public SoundEffect LastBulletSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/LastBullet");
+        public SoundEffect ItemPickUpSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/ItemPickUp");
 
         public List<Texture2D> ObstacleHitParticle
         {
@@ -78,6 +79,16 @@ namespace LessRoomyMoreShooty.Manager
             };
         }
 
+        public List<Texture2D> ItemPickUpParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
+                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+            };
+        }
 
         //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
         //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");

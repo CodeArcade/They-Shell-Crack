@@ -5,6 +5,8 @@ using LessRoomyMoreShooty.Component.Sprites;
 using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using System.Drawing;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
+using System;
+using LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems;
 
 namespace LessRoomyMoreShooty.States
 {
@@ -114,13 +116,13 @@ namespace LessRoomyMoreShooty.States
             LeftDoor.Exit = RightDoor;
             RightDoor.Exit = LeftDoor;
 
-            TopDoor = new Door() 
-            { 
+            TopDoor = new Door()
+            {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 220),
                 Size = new Size(100, 20),
             };
 
-            BottomDoor = new Door() 
+            BottomDoor = new Door()
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698),
                 Size = new Size(100, 20),
@@ -238,6 +240,84 @@ namespace LessRoomyMoreShooty.States
                 Texture = ContentManager.TransparentTexture
             });
         }
+
+        private void AddUpgrades()
+        {
+            Item pickUp, statUp1, statUp2;
+            Random random = new Random();
+
+            switch (random.Next(0, 10))
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    pickUp = new SmallHealItem();
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                    pickUp = new MediumHealItem();
+                    break;
+                default:
+                    pickUp = new LargeHealItem();
+                    break;
+            }
+
+            statUp1 = GetRandomStatUpItem();
+            while ((statUp2 = GetRandomStatUpItem()).GetType() == statUp1.GetType()) { }
+
+            pickUp.OnItemPickUp += (sender, e) =>
+            {
+                Components.Remove(statUp1);
+                Components.Remove(statUp2);
+            };
+
+            statUp1.OnItemPickUp += (sender, e) =>
+            {
+                Components.Remove(pickUp);
+                Components.Remove(statUp2);
+            };
+
+            statUp2.OnItemPickUp += (sender, e) =>
+            {
+                Components.Remove(statUp1);
+                Components.Remove(pickUp);
+            };
+
+            statUp1.Position = new Vector2(GameArea.X + (GameArea.Width / 2) - (statUp1.Size.Width * 1.5f), GameArea.Y + (GameArea.Height / 2));
+            statUp2.Position = new Vector2(GameArea.X + (GameArea.Width / 2), GameArea.Y + (GameArea.Height / 2));
+            pickUp.Position = new Vector2(GameArea.X + (GameArea.Width / 2) + (statUp1.Size.Width * 0.5f) + statUp2.Size.Width, GameArea.Y + (GameArea.Height / 2));
+
+            AddComponent(statUp1);
+            AddComponent(statUp2);
+            AddComponent(pickUp);
+        }
+
+        private Item GetRandomStatUpItem()
+        {
+            Random random = new Random();
+            switch (random.Next(0, 10))
+            {
+                case 0:
+                case 1:
+                    return new AmmoUpItem();
+                case 2:
+                case 3:
+                    return new AttackSpeedUpItem();
+                case 4:
+                case 5:
+                    return new DamageUpItem();
+                case 6:
+                case 7:
+                    return new HealthUpItem();
+                default:
+                    return new MovementSpeedUpItem();
+            }
+
+        }
+
 
     }
 }
