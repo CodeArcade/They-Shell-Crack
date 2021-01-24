@@ -75,12 +75,6 @@
 /processorParam:Quality=Best
 /build:Sound/ObstacleHit.wav
 
-#begin Sound/ObstacleHit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/ObstacleHit.wav
-
 #begin Sound/Reload.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -105,6 +99,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Button/Button.png
 
+#begin Sprites/General/Bullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/General/Bullet.png
+
 #begin Sprites/Misc/Transparent.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -117,7 +123,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Misc/Transparent.png
 
-#begin Sprites/Player/Player.png
+#begin Sprites/Player/Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -127,7 +133,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Player/Player.png
+/build:Sprites/Player/Idle.png
+
+#begin Sprites/Player/Walk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Player/Walk.png
 
 #begin Sprites/Ui/Arrow.png
 /importer:TextureImporter
