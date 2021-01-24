@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</SourceFile>
-  <SourceTime>2021-01-23T13:50:08.1626857+01:00</SourceTime>
-  <DestFile>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/bin/DesktopGL/Content/Sprites/Button/Button.xnb</DestFile>
-  <DestTime>2021-01-23T13:50:29.8473226+01:00</DestTime>
+  <SourceFile>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</SourceFile>
+  <SourceTime>2021-01-23T18:03:32.7060109+01:00</SourceTime>
+  <DestFile>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/bin/DesktopGL/Content/Sprites/Button/Button.xnb</DestFile>
+  <DestTime>2021-01-24T09:59:19.8380302+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

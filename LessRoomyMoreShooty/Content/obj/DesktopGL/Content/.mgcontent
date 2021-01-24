@@ -4,14 +4,22 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Fonts/ButtonFont.spritefont</File>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Fonts/KenneyMini.spritefont</File>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sound/Button.wav</File>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sound/MinorSuccess.wav</File>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</File>
-    <File>D:/Programmieren/LessRoomyMoreShooty/LessRoomyMoreShooty/Content/Sprites/Player/Player.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Fonts/ButtonFont.spritefont</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Fonts/KenneyMini.spritefont</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/Button.wav</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/MinorSuccess.wav</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Player/Player.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Ui/Arrow.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Ui/Bullets.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Ui/Clock.png</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Ui/Heart.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

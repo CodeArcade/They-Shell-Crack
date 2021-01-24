@@ -13,6 +13,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public Keys Right { get; set; } = Keys.D;
         public Keys Up { get; set; } = Keys.W;
         public Keys Down { get; set; } = Keys.S;
+        public Keys Reload { get; set; } = Keys.R;
         public Keys ShootLeft { get; set; } = Keys.Left;
         public Keys ShootRight { get; set; } = Keys.Right;
         public Keys ShootUp { get; set; } = Keys.Up;
@@ -22,6 +23,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             Texture = ContentManager.PlayerTexture;
             CurrentHealth = 10;
+            MaxHealth = 10;
             MaxSpeed = 200;
             Acceleration = 100;
             MaxAmmo = 10;
@@ -46,15 +48,19 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             CheckHealth();
             Move();
-            if (CurrentAmmo <= 0)
-                Reload(gameTime);
+
+            if (CurrentAmmo <= 0 || IsKeyDown(Reload))
+            {
+                CurrentAmmo = 0;
+                DoReload(gameTime);
+            }
             else
                 Shoot(gameTime);
 
             base.Update(gameTime);
         }
 
-        private void Reload(GameTime gameTime)
+        private void DoReload(GameTime gameTime)
         {
             if (CurrentReloadTimeSeconds >= ReloadTimeInSeconds)
             {
@@ -151,7 +157,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)
         {
-            if(sprite is Item.Item && !sprite.IsRemoved)
+            if (sprite is Item.Item && !sprite.IsRemoved)
             {
                 sprite.IsRemoved = true;
                 ((Item.Item)sprite).OnPickup(this);

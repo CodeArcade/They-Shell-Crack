@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Color = Microsoft.Xna.Framework.Color;
 using System.Linq;
+using LessRoomyMoreShooty.Component.Controls;
 
 namespace LessRoomyMoreShooty.States
 {
@@ -13,20 +14,21 @@ namespace LessRoomyMoreShooty.States
     {
         public static string Name = "Game";
 
-        private int Level { get; set; }
-
         protected override void OnLoad()
         {
-            Level = 1;
+      
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            UpdateUi();
         }
 
         public override void PostUpdate(GameTime gameTime)
         {
+
             if (!Components.Any(x => x is Component.Sprites.Player))
             {
                 StateManager.ChangeTo<GameOverState>(GameOverState.Name);
@@ -41,14 +43,17 @@ namespace LessRoomyMoreShooty.States
             base.Draw(gameTime, spriteBatch);
         }
 
-        private void StartLevel()
+        private void UpdateUi()
         {
-            
+            GetLabel("HealthLabel").Text = $"{Player.CurrentHealth}/{Player.MaxHealth}";
+            GetLabel("AmmoLabel").Text = Player.CurrentAmmo > 0? $"{Player.CurrentAmmo}/{Player.MaxAmmo}" : "Reloading";
+            GetLabel("LevelLabel").Text = $"1";
+            GetLabel("TimeLabel").Text = $"{DateTime.Now}";
         }
 
-        private void CheckLevelFinished() 
-        { 
-
+        private Label GetLabel(string name)
+        {
+            return (Label)Components.FirstOrDefault(x => x is Label && ((Label)x).Name == name);
         }
 
     }

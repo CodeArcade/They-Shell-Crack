@@ -14,6 +14,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public float MaxSpeed { get; set; }
         public Vector2 Direction { get; set; }
         public Texture2D Texture { get; set; }
+        public bool Collide { get; set; } = true;
 
         public Size Size
         {

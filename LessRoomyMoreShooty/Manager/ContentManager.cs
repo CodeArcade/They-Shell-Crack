@@ -18,6 +18,11 @@ namespace LessRoomyMoreShooty.Manager
         public SpriteFont ButtonFont => JamGame.Content.Load<SpriteFont>("Fonts/ButtonFont");
         public SpriteFont KenneyMini => JamGame.Content.Load<SpriteFont>("Fonts/KenneyMini");
 
+        public Texture2D HeartTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart");
+        public Texture2D BulletsTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets");
+        public Texture2D ArrowUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow");
+        public Texture2D ClockTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock");
+
         //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
         //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");
         //public Song MenuMusic => JamGame.Content.Load<Song>("Music/MenuMusic");

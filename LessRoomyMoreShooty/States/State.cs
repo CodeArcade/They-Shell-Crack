@@ -81,6 +81,7 @@ namespace LessRoomyMoreShooty.States
             {
                 foreach (Sprite sprite2 in sprites)
                 {
+                    if (!sprite.Collide || !sprite2.Collide) continue;
                     if (sprite == sprite2) continue;
                     if (sprite.Rectangle.Intersects(sprite2.Rectangle))
                     {
