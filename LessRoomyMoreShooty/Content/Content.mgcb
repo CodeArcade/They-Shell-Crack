@@ -39,12 +39,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/KenneyMini.spritefont
 
-#begin ObstacleHit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:ObstacleHit.wav
-
 #begin Sound/Button.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -63,6 +57,12 @@
 /processorParam:Quality=Best
 /build:Sound/EntityHit.wav
 
+#begin Sound/LastBullet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/LastBullet.wav
+
 #begin Sound/MinorSuccess.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -74,6 +74,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/ObstacleHit.wav
+
+#begin Sound/ObstacleHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/ObstacleHit.wav
+
+#begin Sound/Reload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Reload.wav
 
 #begin Sound/Shoot.wav
 /importer:WavImporter

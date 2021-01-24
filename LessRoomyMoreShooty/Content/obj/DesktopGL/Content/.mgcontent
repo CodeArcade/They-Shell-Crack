@@ -7,12 +7,13 @@
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Background/Background.png</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Fonts/ButtonFont.spritefont</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Fonts/KenneyMini.spritefont</File>
-    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/ObstacleHit.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/Button.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/EntityDeath.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/EntityHit.wav</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/LastBullet.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/MinorSuccess.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/ObstacleHit.wav</File>
+    <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/Reload.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sound/Shoot.wav</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Button/Button.png</File>
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Misc/Transparent.png</File>
@@ -23,6 +24,7 @@
     <File>D:/Dev/Source/LessIsMore/LessRoomyMoreShooty/Content/Sprites/Ui/Heart.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

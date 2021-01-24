@@ -48,7 +48,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             Move();
 
-            if ((IsKeyDown(Reload) && CanShoot))
+            if ((IsKeyDown(Reload) && CanShoot) && CurrentAmmo != MaxAmmo)
             {
                 CurrentAmmo = 0;
                 DoReload(gameTime);
@@ -57,6 +57,16 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Shoot(gameTime);
 
             base.Update(gameTime);
+        }
+
+        protected override void DoReload(GameTime gameTime)
+        {
+            if (CurrentReloadTimeSeconds >= ReloadTimeInSeconds)
+            {
+                AudioManager.PlayEffect(ContentManager.ReloadSoundEffect, 0.25f);
+            }
+
+            base.DoReload(gameTime);
         }
 
         private void Move()
@@ -121,6 +131,15 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 Shoot(gameTime, new Vector2(0, 1));
             }
             else { return; }
+        }
+
+        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = 1)
+        {
+            if (!CanShoot) return;
+
+            if(CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
+
+            base.Shoot(gameTime, direction, bulletCount);
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)

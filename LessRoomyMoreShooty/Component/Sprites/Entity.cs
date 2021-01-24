@@ -40,7 +40,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             base.Update(gameTime);
         }
 
-        protected void DoReload(GameTime gameTime)
+        protected virtual void DoReload(GameTime gameTime)
         {
             if (CurrentReloadTimeSeconds >= ReloadTimeInSeconds)
             {
@@ -64,7 +64,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             IsRemoved = true;
         }
 
-        protected void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = 1)
+        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = 1)
         {
             if (!CanShoot) return;
 
