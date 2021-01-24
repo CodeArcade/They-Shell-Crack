@@ -44,8 +44,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             CurrentKeyboard = Keyboard.GetState();
 
-            MuzzlePoint = Position;
-
             CheckHealth();
             Move();
 

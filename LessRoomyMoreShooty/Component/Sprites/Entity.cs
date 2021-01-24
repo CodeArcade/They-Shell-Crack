@@ -27,6 +27,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public override void Update(GameTime gameTime)
         {
+            MuzzlePoint = Position;
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
