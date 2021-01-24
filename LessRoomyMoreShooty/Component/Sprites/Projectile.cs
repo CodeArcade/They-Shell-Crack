@@ -19,7 +19,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Position = parent.MuzzlePoint;
             Speed = parent.ProjectileSpeed;
             Direction = direction;
-            Texture = ContentManager.ButtonTexture;
+            Texture = ContentManager.BulletTexture;
             Size = new System.Drawing.Size(10, 10);
             TTL = parent.RangeInSeconds;
 

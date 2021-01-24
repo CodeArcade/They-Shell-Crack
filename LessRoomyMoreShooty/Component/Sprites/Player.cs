@@ -1,13 +1,18 @@
 ﻿using LessRoomyMoreShooty.Manager;
+using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Drawing;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
     public class Player : Entity
     {
         private KeyboardState CurrentKeyboard { get; set; }
+        private Dictionary<string, Animation> Animations { get; set; }
 
         public Keys Left { get; set; } = Keys.A;
         public Keys Right { get; set; } = Keys.D;
@@ -21,7 +26,18 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public Player()
         {
-            Texture = ContentManager.PlayerTexture;
+            Animations = new Dictionary<string, Animation>
+            {
+                { "walk", new Animation(ContentManager.PlayerWalkAnimation, 8) { FrameSpeed = 0.05f } },
+                { "idle", new Animation(ContentManager.PlayerIdleAnimation, 4) { FrameSpeed = 0.1f } }
+            };
+
+            Texture = ContentManager.TransparentTexture;
+            Size = new Size(56, 84);
+
+            AnimationManager.Parent = this;
+            AnimationManager.Play(Animations["idle"]);
+
             MaxHealth = 10;
             CurrentHealth = MaxHealth;
             MaxSpeed = 200;
@@ -35,11 +51,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
             RangeInSeconds = 2;
             ProjectileSpeed = 300;
             Damage = 1;
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            base.Draw(gameTime, spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
@@ -71,18 +82,24 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         private void Move()
         {
+
             if (!IsKeyDown(Left) && !IsKeyDown(Right) && !IsKeyDown(Up) && !IsKeyDown(Down))
             {
+                AnimationManager.Play(Animations["idle"]);
                 Decelerate();
                 return;
             }
 
             if (IsKeyDown(Left) && !IsKeyDown(Right))
             {
+                AnimationManager.Flip = false;
+                AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(-1, Direction.Y);
             }
             else if (IsKeyDown(Right) && !IsKeyDown(Left))
             {
+                AnimationManager.Flip = true;
+                AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(1, Direction.Y);
             }
             else
@@ -137,7 +154,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             if (!CanShoot) return;
 
-            if(CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
+            if (CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
 
             base.Shoot(gameTime, direction, bulletCount);
         }

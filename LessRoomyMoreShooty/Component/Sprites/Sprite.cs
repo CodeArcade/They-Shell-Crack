@@ -81,7 +81,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (!Collides(sprite)) return false;
 
             int distanceRight = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
-            int distanceLeft = Math.Abs(Hitbox.Right- sprite.Hitbox.Left);
+            int distanceLeft = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
 
             int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
             int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
@@ -124,7 +124,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
             int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
-            
+
             return distanceBottom < distanceLeft && distanceBottom < distanceTop && distanceBottom < distanceRight;
         }
 
@@ -138,14 +138,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (AnimationManager.IsPlaying)
-            {
-                AnimationManager.Draw(spriteBatch);
-                ParticleManager.Draw(gameTime, spriteBatch);
-                return;
-            }
 
-            spriteBatch.Draw(Texture, Rectangle, Color.White);
+            if (AnimationManager.IsPlaying)
+                AnimationManager.Draw(spriteBatch);
+            else
+                spriteBatch.Draw(Texture, Rectangle, Color.White);
+
             ParticleManager.Draw(gameTime, spriteBatch);
         }
 

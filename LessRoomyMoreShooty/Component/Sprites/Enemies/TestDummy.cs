@@ -19,7 +19,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             ReloadTimeInSeconds = 5;
             RangeInSeconds = 0.5;
             Spread = 45;
-            Texture = ContentManager.PlayerTexture;
+            Texture = ContentManager.PlayerIdleAnimation;
         }
 
         public override void Update(GameTime gameTime)

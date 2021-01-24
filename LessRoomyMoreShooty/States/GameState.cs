@@ -79,7 +79,7 @@ namespace LessRoomyMoreShooty.States
             RightDoor.IsOpen = false;
 
             Door entry = (Door)sender;
-            Player.Position = new Vector2(entry.Exit.Position.X, entry.Exit.Position.Y - (entry == TopDoor ? Player.Size.Height : 0));
+            Player.Position = new Vector2(entry.Exit.Position.X - (entry == LeftDoor ? Player.Size.Width : 0), entry.Exit.Position.Y - (entry == TopDoor ? Player.Size.Height : 0));
 
             Level++;
             AddComponent(new TestDummy() { Position = new Vector2(new Random().Next(0, 800), new Random().Next(0, 500)) });

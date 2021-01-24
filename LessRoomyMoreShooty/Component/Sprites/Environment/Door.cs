@@ -16,7 +16,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Environment
             {
                 isOpen = value;
                 if (isOpen)
-                    Texture = ContentManager.PlayerTexture;
+                    Texture = ContentManager.TransparentTexture;
                 else
                     Texture = ContentManager.ButtonTexture;
             }
