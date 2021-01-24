@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using Unity;
 
@@ -12,12 +11,15 @@ namespace LessRoomyMoreShooty.Manager
         public JamGame JamGame { get; set; }
 
         public Texture2D BackgroundTexture => JamGame.Content.Load<Texture2D>("Background/Background");
-        public Texture2D PlayerTexture => JamGame.Content.Load<Texture2D>("Sprites/Player/Player");
+        public Texture2D PlayerIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Idle");
+        public Texture2D PlayerWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Walk");
 
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");
         public SoundEffect ButtonClickSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Button");
         public SpriteFont ButtonFont => JamGame.Content.Load<SpriteFont>("Fonts/ButtonFont");
         public SpriteFont KenneyMini => JamGame.Content.Load<SpriteFont>("Fonts/KenneyMini");
+
+        public Texture2D BulletTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Bullet");
 
         public Texture2D HeartTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart");
         public Texture2D BulletsTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets");

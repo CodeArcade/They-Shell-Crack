@@ -17,7 +17,7 @@ namespace LessRoomyMoreShooty.Manager
         private float Timer { get; set; }
 
         public Vector2 Position { get; set; }
-        public float Scale { get; set; }
+        public float Scale { get; set; } = 1;
         public bool IsPlaying { get; set; }
         public bool Flip { get; set; }
         public Sprite Parent { get; set; }
