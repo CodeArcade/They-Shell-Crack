@@ -1,10 +1,13 @@
-﻿namespace LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems
+﻿using System.Drawing;
+
+namespace LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems
 {
     public class MediumHealItem : Item
     {
         public MediumHealItem() : base("Medium Heal", "Healthy.")
         {
-            Texture = ContentManager.ButtonTexture;
+            Texture = ContentManager.MediumHealthPotionTexture;
+            Size = new Size(50, 50);
         }
 
         public override void OnPickup(Player player)

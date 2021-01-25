@@ -90,27 +90,13 @@ namespace LessRoomyMoreShooty.Manager
             };
         }
 
-        //public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button");
-        //public SoundEffect HurtSoundEffect => JamGame.Content.Load<SoundEffect>("SoundEffects/Hurt");
-        //public Song MenuMusic => JamGame.Content.Load<Song>("Music/MenuMusic");
-
-        //public List<Texture2D> HurtParticles
-        //{
-        //    get
-        //    {
-        //        List<Texture2D> hurtParticles = new List<Texture2D>
-        //        {
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle1"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle1"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle2"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle2"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle3"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle3"),
-        //            JamGame.Content.Load<Texture2D>("Particle/HurtParticle4")
-        //        };
-        //        return hurtParticles;
-        //    }
-        //}
-
+        public Texture2D SmallHealthPotionTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/SmallHealthPotion");
+        public Texture2D MediumHealthPotionTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/MediumHealthPotion");
+        public Texture2D LargeHealthPotionTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/LargeHealthPotion");
+        public Texture2D HealthUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/HealthUp");
+        public Texture2D SpeedUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/SpeedUp");
+        public Texture2D AttackSpeedUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/AttackSpeedUp");
+        public Texture2D AmmoUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/AmmoUp");
+        public Texture2D DamageUpTexture => JamGame.Content.Load<Texture2D>("Sprites/Items/DamageUp");
     }
 }

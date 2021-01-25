@@ -108,10 +108,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Up) && !IsKeyDown(Down))
             {
+                AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, -1);
             }
             else if (IsKeyDown(Down) && !IsKeyDown(Up))
             {
+                AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, 1);
             }
             else
@@ -156,19 +158,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
 
             base.Shoot(gameTime, direction, bulletCount);
-        }
-
-        public override void OnCollision(Sprite sprite, GameTime gameTime)
-        {
-            if (sprite is Item.Item && !sprite.IsRemoved)
-            {
-                sprite.IsRemoved = true;
-                AudioManager.PlayEffect(ContentManager.ItemPickUpSoundEffect, 0.25f);
-                ParticleManager.GenerateNewParticle(Color.White, new Vector2(sprite.Position.X + (sprite.Size.Width / 2), sprite.Position.Y + (sprite.Size.Height / 2)) , ContentManager.ItemPickUpParticle, 10, 30);
-                ((Item.Item)sprite).OnPickup(this);
-            }
-
-            base.OnCollision(sprite, gameTime);
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);

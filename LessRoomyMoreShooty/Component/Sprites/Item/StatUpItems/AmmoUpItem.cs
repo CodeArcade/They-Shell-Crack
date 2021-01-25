@@ -1,10 +1,13 @@
-﻿namespace LessRoomyMoreShooty.Component.Sprites.Item
+﻿using System.Drawing;
+
+namespace LessRoomyMoreShooty.Component.Sprites.Item
 {
     public class AmmoUpItem : Item
     {
         public AmmoUpItem() : base("Ammo Up", "Ammo Up | Reloading takes longer")
         {
-            Texture =  ContentManager.ButtonTexture;
+            Texture = ContentManager.AmmoUpTexture;
+            Size = new Size(50, 50);
         }
 
         public override void OnPickup(Player player)

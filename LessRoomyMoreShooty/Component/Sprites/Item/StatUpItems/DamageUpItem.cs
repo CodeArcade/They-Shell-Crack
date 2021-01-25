@@ -1,10 +1,13 @@
-﻿namespace LessRoomyMoreShooty.Component.Sprites.Item
+﻿using System.Drawing;
+
+namespace LessRoomyMoreShooty.Component.Sprites.Item
 {
     public class DamageUpItem : Item
     {
         public DamageUpItem() : base("Damage Up", "Damage Up | Range Down")
         {
-            Texture = ContentManager.ButtonTexture;
+            Texture = ContentManager.DamageUpTexture;
+            Size = new Size(50, 50);
         }
 
         public override void OnPickup(Player player)
