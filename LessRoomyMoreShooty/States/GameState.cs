@@ -116,6 +116,7 @@ namespace LessRoomyMoreShooty.States
             {
                 // Gegener an Türen spawnen, an denen der Spieler nicht reingekommen ist
                 AddComponent(new Zombie(Player) { Position = new Vector2(800, 500), IsActive = true });
+                AddComponent(new Skeleton(Player) { Position = new Vector2(300, 500), IsActive = true });
             }
             
         }

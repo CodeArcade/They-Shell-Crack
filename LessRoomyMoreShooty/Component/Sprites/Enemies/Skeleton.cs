@@ -1,26 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
-    public class Zombie : Enemy
+    public class Skeleton : Enemy
     {
-
-        public Zombie(Player player) : base(player)
+        public Skeleton(Player player) : base(player)
         {
             MaxHealth = 5;
             CurrentHealth = 5;
             Damage = 1;
-            AttackSpeedInSeconds = 1;
+            AttackSpeedInSeconds = 0.5;
             MaxAmmo = 1;
             CurrentAmmo = 1;
-            ReloadTimeInSeconds = 0.75;
+            ReloadTimeInSeconds = 0.5;
             ProjectileSpeed = 300;
             RangeInSeconds = 1;
-            Spread = 45;
+            Spread = 3;
             Size = new Size(56, 84);
 
             Texture = ContentManager.ButtonTexture;
@@ -32,6 +32,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             {
                 SetDirectionToPlayer();
                 Move();
+                Shoot(gameTime);
             }
 
             base.Update(gameTime);
@@ -42,30 +43,18 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             Direction = DirectionToPlayer;
         }
 
+        private void Shoot(GameTime gameTime)
+        {
+            if (DistanceToPlayer <= 250)
+                Shoot(gameTime, Direction);
+        }
+
         private void Move()
         {
-            if (DistanceToPlayer > 65)
+            if (DistanceToPlayer > 250)
                 Speed = 200;
             else
                 Speed = 0;
-        }
-
-        public override void OnCollision(Sprite sprite, GameTime gameTime)
-        {
-            if (sprite is Player)
-            {
-                if (!CanShoot) return;
-                CanShoot = false;
-
-                ParticleManager.GenerateNewParticle(Microsoft.Xna.Framework.Color.White, MuzzlePoint, ContentManager.ShootParticle, 3, 5);
-                AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
-
-                Player.CurrentHealth -= Damage;
-                CurrentAmmo -= 1;
-                AttackSpeedTimer = 0;
-            }
-
-            base.OnCollision(sprite, gameTime);
         }
 
     }

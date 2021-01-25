@@ -1,4 +1,5 @@
-﻿using LessRoomyMoreShooty.Component.Sprites.Environment;
+﻿using LessRoomyMoreShooty.Component.Sprites.Enemies;
+using LessRoomyMoreShooty.Component.Sprites.Environment;
 using Microsoft.Xna.Framework;
 
 namespace LessRoomyMoreShooty.Component.Sprites
@@ -83,6 +84,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite == this) return;
             if (sprite is Item.Item) return;
             if (sprite is Projectile) return;
+            if (this is Player && sprite is Enemy) return;
 
             if (IsTouchingLeft(sprite))
             {

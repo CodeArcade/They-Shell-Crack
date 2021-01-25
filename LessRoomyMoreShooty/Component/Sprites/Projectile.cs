@@ -26,9 +26,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             int spreadFactor = new Random().Next(-parent.Spread, parent.Spread);
 
-            if (Direction.Y == 0)
+            if  (Direction.Y == 0)
                 Direction = new Vector2(Direction.X, spreadFactor / 100f);
-            else
+            else if (Direction.X == 0)
                 Direction = new Vector2(spreadFactor / 100f, Direction.Y);
         }
 
@@ -41,7 +41,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 IsRemoved = true;
                 return;
             }
-
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
