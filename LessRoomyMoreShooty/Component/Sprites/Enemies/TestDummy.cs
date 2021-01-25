@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
     public class TestDummy : Enemy
     {
-        public TestDummy()
+        public TestDummy(Player player) : base(player)
         {
             MaxHealth = 5;
             CurrentHealth = 5;
@@ -24,7 +21,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         public override void Update(GameTime gameTime)
         {
-            Shoot(gameTime, new Vector2(1,0), 5);
+            if (IsActive) Shoot(gameTime, new Vector2(1, 0), 5);
 
             base.Update(gameTime);
         }

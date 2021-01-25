@@ -1,4 +1,5 @@
-﻿using LessRoomyMoreShooty.Component.Sprites.Environment;
+﻿using LessRoomyMoreShooty.Component.Sprites.Enemies;
+using LessRoomyMoreShooty.Component.Sprites.Environment;
 using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -51,6 +52,8 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (sprite == this) return;
             if (sprite is Projectile) return;
             if (IsRemoved) return;
+
+            if (!(Parent is Player) && sprite is Enemy) return;
 
             if (sprite is Obstacle)
             {

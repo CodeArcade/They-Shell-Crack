@@ -47,7 +47,7 @@ namespace LessRoomyMoreShooty.States
 
         public override void PostUpdate(GameTime gameTime)
         {
-            if (!Components.Any(x => x is Component.Sprites.Player))
+            if (!Components.Any(x => x is Player))
             {
                 StateManager.ChangeTo<GameOverState>(GameOverState.Name);
                 return;
@@ -115,7 +115,7 @@ namespace LessRoomyMoreShooty.States
             else
             {
                 // Gegener an Türen spawnen, an denen der Spieler nicht reingekommen ist
-                AddComponent(new TestDummy() { Position = new Vector2(800, 500) });
+                AddComponent(new Zombie(Player) { Position = new Vector2(800, 500), IsActive = true });
             }
             
         }
