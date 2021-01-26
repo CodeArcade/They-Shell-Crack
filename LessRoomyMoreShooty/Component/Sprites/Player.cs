@@ -50,6 +50,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             RangeInSeconds = 2;
             ProjectileSpeed = 300;
             Damage = 1;
+            ShootAll = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -157,7 +158,13 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
 
-            base.Shoot(gameTime, direction, bulletCount);
+            int projectileCount = ShootAll ? CurrentAmmo : ProjectileCount;
+            for (int i = 0; i < projectileCount; i++)
+            {
+                base.Shoot(gameTime, direction, bulletCount);
+                if (CurrentAmmo == 0) break;
+            }
+            
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);

@@ -12,6 +12,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public double AttackSpeedInSeconds { get; set; }
         public double AttackSpeedTimer { get; set; }
         public int ProjectileSpeed { get; set; }
+        public int ProjectileCount { get; set; }
         public int MaxAmmo { get; set; }
         public int CurrentAmmo { get; set; }
         public double ReloadTimeInSeconds { get; set; }
@@ -21,6 +22,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public float Acceleration { get; set; }
         public Vector2 MuzzlePoint { get; set; }
         public bool CanShoot { get; set; } = true;
+        public bool ShootAll { get; set; }
 
         public override void Update(GameTime gameTime)
         {
