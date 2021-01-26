@@ -1,6 +1,7 @@
 ﻿using LessRoomyMoreShooty.Manager;
 using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +13,10 @@ namespace LessRoomyMoreShooty.Component.Sprites
     {
         private KeyboardState CurrentKeyboard { get; set; }
         private Dictionary<string, Animation> Animations { get; set; }
+
+        public double IFrames { get; } = 2;
+        public double IFramesTimer { get; set; }
+        public bool CanTakeDamage => IFramesTimer > IFrames;
 
         public Keys Left { get; set; } = Keys.A;
         public Keys Right { get; set; } = Keys.D;
@@ -49,12 +54,21 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Spread = 3;
             RangeInSeconds = 2;
             ProjectileSpeed = 300;
+            ProjectileCount = 1;
             Damage = 1;
             ShootAll = false;
+
+            IFramesTimer = IFrames;
+
+            HitboxSize = new Size(45, 60);
+            HitBoxXOffSet = 5;
+            HitBoxYOffSet = 24;
         }
 
         public override void Update(GameTime gameTime)
         {
+            IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
             CurrentKeyboard = Keyboard.GetState();
 
             Move();
@@ -68,6 +82,23 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Shoot(gameTime);
 
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            if (!CanTakeDamage)
+            {
+                if (AnimationManager.IsPlaying)
+                    AnimationManager.Draw(spriteBatch, Color.Red);
+                else
+                    spriteBatch.Draw(Texture, Rectangle, Color.Red);
+
+                ParticleManager.Draw(gameTime, spriteBatch);
+                return;
+            }
+
+            base.Draw(gameTime, spriteBatch);
+
         }
 
         protected override void DoReload(GameTime gameTime)
@@ -152,7 +183,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             else { return; }
         }
 
-        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = 1)
+        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1)
         {
             if (!CanShoot) return;
 
@@ -161,13 +192,21 @@ namespace LessRoomyMoreShooty.Component.Sprites
             int projectileCount = ShootAll ? CurrentAmmo : ProjectileCount;
             for (int i = 0; i < projectileCount; i++)
             {
-                base.Shoot(gameTime, direction, bulletCount);
+                base.Shoot(gameTime, direction, projectileCount);
                 if (CurrentAmmo == 0) break;
             }
-            
+
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);
+
+        public override void TakeDamage(int damage)
+        {
+            if (!CanTakeDamage)  return;
+
+            IFramesTimer = 0;
+            base.TakeDamage(damage);
+        }
 
     }
 }

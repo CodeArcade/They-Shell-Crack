@@ -26,5 +26,11 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             base.Update(gameTime);
         }
 
+        protected override void OnLevelUp(int level)
+        {
+            MaxHealth += level;
+            CurrentHealth = MaxHealth;
+        }
+
     }
 }

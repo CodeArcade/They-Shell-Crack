@@ -1,4 +1,5 @@
-﻿using LessRoomyMoreShooty.Component.Sprites.Enemies;
+﻿using LessRoomyMoreShooty.Component.Effects;
+using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
 using Microsoft.Xna.Framework;
 
@@ -32,13 +33,13 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 DoReload(gameTime);
             else
                  if (AttackSpeedTimer < AttackSpeedInSeconds)
-                 {
-                    AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
-                    CanShoot = false;
-                 }
-                 else CanShoot = true;
+            {
+                AttackSpeedTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                CanShoot = false;
+            }
+            else CanShoot = true;
 
-            MuzzlePoint = Position;
+            MuzzlePoint = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
@@ -67,7 +68,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             IsRemoved = true;
         }
 
-        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = 1)
+        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1)
         {
             if (!CanShoot) return;
 
@@ -77,7 +78,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             ParticleManager.GenerateNewParticle(Color.White, MuzzlePoint, ContentManager.ShootParticle, 3, 5);
             AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
 
-            for (int i = 0; i < bulletCount; i++)
+            for (int i = 0; i < (bulletCount <= 0 ? ProjectileCount : bulletCount); i++)
                 CurrentState.AddComponent(new Projectile(direction, this));
         }
 
@@ -106,6 +107,13 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 Position = new Vector2(Position.X, Position.Y - (float)(Speed * gameTime.ElapsedGameTime.TotalSeconds));
             }
 
+        }
+
+        public virtual void TakeDamage(int damage)
+        {
+            CurrentState.AddComponent(new DamageNumber(damage, Position));
+
+            CurrentHealth -= damage;
         }
 
     }

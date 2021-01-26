@@ -24,8 +24,10 @@ namespace LessRoomyMoreShooty.Manager
         public bool Reverse { get; set; }
         public bool FlipVertically { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Color? color = null)
         {
+            if (color is null) color = Color.White;
+
             if (Parent != null) Position = Parent.Position;
             if (Flip)
             {
@@ -33,12 +35,12 @@ namespace LessRoomyMoreShooty.Manager
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                    0,
                                                    Animation.FrameWidth,
-                                                   Animation.FrameHeight), Color.White, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
+                                                   Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
                 else
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), Color.White, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
+                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
 
             }
             else
@@ -47,12 +49,12 @@ namespace LessRoomyMoreShooty.Manager
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None | SpriteEffects.FlipVertically, 0);
+                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.None | SpriteEffects.FlipVertically, 0);
                 else
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
 
         }

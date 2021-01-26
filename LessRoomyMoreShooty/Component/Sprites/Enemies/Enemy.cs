@@ -27,5 +27,17 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             Player = player;
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            IsActive = true; // is here so it does not shooting before on right coordinate in map
+        }
+
+        public void LevelUp(int targetLevel)
+        {
+              OnLevelUp(targetLevel);
+        }
+
+        protected abstract void OnLevelUp(int level);
     }
 }

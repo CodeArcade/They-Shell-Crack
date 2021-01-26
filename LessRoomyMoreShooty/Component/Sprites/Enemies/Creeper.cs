@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,14 +7,13 @@ using System.Text;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
-    public class Zombie : Enemy
+    public class Creeper : Enemy
     {
-
-        public Zombie(Player player) : base(player)
+        public Creeper(Player player) : base(player)
         {
-            MaxHealth = 5;
-            CurrentHealth = 5;
-            Damage = 1;
+            MaxHealth = 3;
+            CurrentHealth = 3;
+            Damage = 2;
             AttackSpeedInSeconds = 1;
             MaxAmmo = 1;
             CurrentAmmo = 1;
@@ -21,7 +21,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             ProjectileSpeed = 300;
             RangeInSeconds = 1;
             Spread = 45;
-            MaxSpeed = 180;
+            MaxSpeed = 220;
             Size = new Size(56, 84);
 
             Texture = ContentManager.ButtonTexture;
@@ -45,21 +45,19 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         private void Move()
         {
-            if (DistanceToPlayer > 65)
-                Speed = MaxSpeed;
-            else
-                Speed = 0;
+            Speed = MaxSpeed;
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)
         {
             if (sprite is Player)
             {
-                if (!CanShoot) return;
+                if (!CanShoot || IsRemoved) return;
                 CanShoot = false;
+                IsRemoved = true;
 
-                ParticleManager.GenerateNewParticle(Microsoft.Xna.Framework.Color.White, MuzzlePoint, ContentManager.ShootParticle, 3, 5);
-                AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
+                ParticleManager.GenerateNewParticle(Microsoft.Xna.Framework.Color.White, MuzzlePoint, new List<Texture2D>(){ ContentManager.DamageUpTexture}, 30, 20);
+                AudioManager.PlayEffect(ContentManager.ExplosionSoundEffect, 0.15f);
 
                 Player.TakeDamage(Damage);
                 CurrentAmmo -= 1;
@@ -76,6 +74,5 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
             Damage += (int)(level * 0.1);
         }
-
     }
 }

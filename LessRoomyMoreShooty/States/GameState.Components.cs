@@ -22,10 +22,9 @@ namespace LessRoomyMoreShooty.States
         {
             AddUi();
 
-            Player = new Player()
-            {
-                Position = new Vector2(200, 200)
-            };
+            Player = new Player();
+            Player.Position = new Vector2(GameArea.X + GameArea.Width / 2 - Player.Size.Width / 2, GameArea.Y + GameArea.Height / 2 - Player.Size.Height / 2);
+
             AddComponent(Player);
 
             AddDoors();

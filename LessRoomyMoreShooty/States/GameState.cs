@@ -11,6 +11,7 @@ using LessRoomyMoreShooty.Component.Sprites.Environment;
 using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Item;
 using LessRoomyMoreShooty.Component.Sprites;
+using System.Collections.Generic;
 
 namespace LessRoomyMoreShooty.States
 {
@@ -27,7 +28,7 @@ namespace LessRoomyMoreShooty.States
         protected override void OnLoad()
         {
             Level = 0;
-            RemainingSeconds = 60 * 10;
+            RemainingSeconds = 60 * 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -43,6 +44,11 @@ namespace LessRoomyMoreShooty.States
             SecondTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
             UpdateUi();
+
+            if (RemainingSeconds <= 0)
+            {
+                StateManager.ChangeTo<GameOverState>(GameOverState.Name);
+            }
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -101,24 +107,76 @@ namespace LessRoomyMoreShooty.States
             Player.Position = new Vector2(entry.Exit.Position.X - (entry == LeftDoor ? Player.Size.Width : 0), entry.Exit.Position.Y - (entry == TopDoor ? Player.Size.Height : 0));
 
             if (RemainingSeconds > 0)
-            {
                 RemainingSeconds += RemainingLevelSeconds;
-            }
 
             Level++;
-            RemainingLevelSeconds = 30;
+            RemainingLevelSeconds = 10;
 
-            if(Level % 5 == 0)
+            if (Level % 5 == 0)
             {
                 AddUpgrades();
             }
             else
             {
-                // Gegener an Türen spawnen, an denen der Spieler nicht reingekommen ist
-                AddComponent(new Zombie(Player) { Position = new Vector2(800, 500), IsActive = true });
-                AddComponent(new Skeleton(Player) { Position = new Vector2(300, 500), IsActive = true });
+                Random random = new Random();
+                List<Enemy> enemiesToSpawn = new List<Enemy>();
+                List<Door> doorsToSpawnAt = new List<Door>
+                {
+                    RightDoor,
+                    LeftDoor,
+                    TopDoor,
+                    BottomDoor
+                };
+                doorsToSpawnAt.Remove(entry.Exit);
+
+                int enemyCount = (Level / 10) + 1;
+
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    switch (random.Next(0, 4))
+                    {
+                        case 0:
+                            enemiesToSpawn.Add(new Zombie(Player));
+                            break;
+                        case 1:
+                            enemiesToSpawn.Add(new Skeleton(Player));
+                            break;
+                        case 2:
+                            enemiesToSpawn.Add(new Creeper(Player));
+                            break;
+                        case 3:
+                            enemiesToSpawn.Add(new Blaze(Player));
+                            break;
+                    }
+                }
+
+                foreach (Enemy enemy in enemiesToSpawn)
+                {
+                    Door door = doorsToSpawnAt[random.Next(0, 3)];
+                    Vector2 position = door.Position;
+
+                    enemy.LevelUp(Level);
+
+                    if (door == RightDoor)
+                    {
+                        enemy.Position = new Vector2(position.X - (enemy.Size.Width * 1.5f), position.Y);
+                    }
+                    else if (door == LeftDoor)
+                    {
+                        enemy.Position = new Vector2(position.X + (enemy.Size.Width * 0.5f), position.Y);
+                    }
+                    else if (door == TopDoor)
+                    {
+                        enemy.Position = new Vector2(position.X, position.Y + (enemy.Size.Height * 0.5f));
+                    }
+                    else if (door == BottomDoor)
+                    {
+                        enemy.Position = new Vector2(position.X, position.Y - (enemy.Size.Height * 1.5f));
+                    }
+                    AddComponent(enemy);
+                }
+
             }
-            
         }
 
         private void LevelEnd()

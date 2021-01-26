@@ -34,6 +34,7 @@ namespace LessRoomyMoreShooty.Manager
         public SoundEffect ReloadSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Reload");
         public SoundEffect LastBulletSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/LastBullet");
         public SoundEffect ItemPickUpSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/ItemPickUp");
+        public SoundEffect ExplosionSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/EntityDeath");
 
         public List<Texture2D> ObstacleHitParticle
         {

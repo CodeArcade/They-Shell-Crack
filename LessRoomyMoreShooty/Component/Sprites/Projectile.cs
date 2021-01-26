@@ -1,4 +1,5 @@
-﻿using LessRoomyMoreShooty.Component.Sprites.Enemies;
+﻿using LessRoomyMoreShooty.Component.Effects;
+using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
 using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
@@ -24,12 +25,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
             Size = new System.Drawing.Size(10, 10);
             TTL = parent.RangeInSeconds;
 
-            int spreadFactor = new Random().Next(-parent.Spread, parent.Spread);
+            Random random = new Random();
 
-            if  (Direction.Y == 0)
-                Direction = new Vector2(Direction.X, spreadFactor / 100f);
-            else if (Direction.X == 0)
-                Direction = new Vector2(spreadFactor / 100f, Direction.Y);
+            Direction = new Vector2(Direction.X + (random.Next(-parent.Spread, parent.Spread) / 100f), Direction.Y + (random.Next(-parent.Spread, parent.Spread) / 100f));
         }
 
         public override void Update(GameTime gameTime)
@@ -66,7 +64,8 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityHitParticle, 5, 10);
             AudioManager.PlayEffect(ContentManager.EntityHitSoundEffect, 0.25f);
-            ((Entity)sprite).CurrentHealth -= ((Entity)Parent).Damage;
+
+            ((Entity)sprite).TakeDamage(((Entity)Parent).Damage);
             IsRemoved = true;
         }
 
