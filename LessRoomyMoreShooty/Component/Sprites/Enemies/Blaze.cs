@@ -12,16 +12,16 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
         {
             MaxHealth = 4;
             CurrentHealth = 4;
-            Damage = 1;
+            Damage = 2;
             AttackSpeedInSeconds = 0.2;
             MaxAmmo = 3;
             CurrentAmmo = 3;
             ReloadTimeInSeconds = 1.5;
-            ProjectileSpeed = 200;
+            ProjectileSpeed = 100;
             ProjectileCount = 1;
-            RangeInSeconds = 3;
+            RangeInSeconds = 4;
             Spread = 25;
-            MaxSpeed = 100;
+            MaxSpeed = 50;
             Size = new Size(56, 84);
 
             Texture = ContentManager.ButtonTexture;
@@ -37,11 +37,6 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             }
 
             base.Update(gameTime);
-        }
-
-        private void SetDirectionToPlayer()
-        {
-            Direction = DirectionToPlayer;
         }
 
         private void Shoot(GameTime gameTime)
@@ -60,10 +55,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         protected override void OnLevelUp(int level)
         {
-            MaxHealth += (int)(level * 0.2);
+            MaxHealth += (int)(level * 0.1);
             CurrentHealth = MaxHealth;
-
-            Damage += (int)(level * 0.1); 
         }
     }
 }

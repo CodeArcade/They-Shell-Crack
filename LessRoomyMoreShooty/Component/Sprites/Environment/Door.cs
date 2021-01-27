@@ -15,8 +15,11 @@ namespace LessRoomyMoreShooty.Component.Sprites.Environment
             set
             {
                 isOpen = value;
-                if (isOpen)
+                if (isOpen) 
+                { 
+                    AudioManager.PlayEffect(ContentManager.DoorOpenSoundEffect, 0.25f);
                     Texture = ContentManager.TransparentTexture;
+                }
                 else
                     Texture = ContentManager.ButtonTexture;
             }

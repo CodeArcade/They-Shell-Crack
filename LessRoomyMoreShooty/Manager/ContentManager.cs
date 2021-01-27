@@ -34,16 +34,16 @@ namespace LessRoomyMoreShooty.Manager
         public SoundEffect ReloadSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Reload");
         public SoundEffect LastBulletSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/LastBullet");
         public SoundEffect ItemPickUpSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/ItemPickUp");
-        public SoundEffect ExplosionSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/EntityDeath");
+        public SoundEffect ExplosionSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Explosion");
+        public SoundEffect DoorOpenSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/DoorOpen");
 
         public List<Texture2D> ObstacleHitParticle
         {
             get => new List<Texture2D>()
             {
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle1"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle2"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle3")
             };
         }
 
@@ -51,10 +51,9 @@ namespace LessRoomyMoreShooty.Manager
         {
             get => new List<Texture2D>()
             {
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle1"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle2"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle3")
             };
         }
 
@@ -62,10 +61,12 @@ namespace LessRoomyMoreShooty.Manager
         {
             get => new List<Texture2D>()
             {
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle1"),
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle2"),
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle3"),
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle1"),
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle2"),
+               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle3")
             };
         }
 
@@ -73,10 +74,9 @@ namespace LessRoomyMoreShooty.Manager
         {
             get => new List<Texture2D>()
             {
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle1"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle2"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle3")
             };
         }
 
@@ -84,10 +84,12 @@ namespace LessRoomyMoreShooty.Manager
         {
             get => new List<Texture2D>()
             {
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Arrow"),
-                JamGame.Content.Load<Texture2D>("Sprites/Ui/Clock")
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle1"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle2"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/ShootParticle3"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle1"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle2"),
+                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle3")
             };
         }
 

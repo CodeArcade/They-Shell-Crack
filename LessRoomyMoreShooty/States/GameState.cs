@@ -22,6 +22,7 @@ namespace LessRoomyMoreShooty.States
         public int RemainingSeconds { get; set; }
         public int RemainingLevelSeconds { get; set; }
         public double SecondTimer { get; set; }
+        public bool IsGameOver { get; set; }
 
         public Rectangle GameArea { get; set; } = new Rectangle(90, 240, 840, 450);
 
@@ -35,6 +36,19 @@ namespace LessRoomyMoreShooty.States
         {
             base.Update(gameTime);
 
+            if (IsGameOver)
+            {
+                AddGameOverUi();
+
+                foreach (Component.Component component in Components)
+                {
+                    if (component is Projectile) component.IsRemoved = true;
+                    if (component is Enemy enemy) enemy.IsActive = false;
+                }
+
+                return;
+            }
+
             if (SecondTimer >= 1 && Level > 0)
             {
                 RemainingSeconds--;
@@ -47,19 +61,22 @@ namespace LessRoomyMoreShooty.States
 
             if (RemainingSeconds <= 0)
             {
-                StateManager.ChangeTo<GameOverState>(GameOverState.Name);
+                IsGameOver = true;
             }
+
+            foreach (Component.Component component in Components)
+                if (component is Enemy enemy) enemy.IsActive = true;
         }
 
         public override void PostUpdate(GameTime gameTime)
         {
+            base.PostUpdate(gameTime);
+
             if (!Components.Any(x => x is Player))
             {
-                StateManager.ChangeTo<GameOverState>(GameOverState.Name);
+                IsGameOver = true;
                 return;
             }
-
-            base.PostUpdate(gameTime);
 
             if (!AreEnemiesAlive() && !AreItemsPresent())
             {
@@ -88,7 +105,7 @@ namespace LessRoomyMoreShooty.States
                 $"{(RemainingLevelSeconds % 60).ToString().PadLeft(2, '0')}");
         }
 
-        private Label GetLabel(string name) => (Label)Components.FirstOrDefault(x => x is Label && ((Label)x).Name == name);
+        private Label GetLabel(string name) => (Label)Components.FirstOrDefault(x => x is Label label && label.Name == name);
 
         private bool AreEnemiesAlive() => Components.Any(x => x is Enemy);
         private bool AreItemsPresent() => Components.Any(x => x is Item);
@@ -181,10 +198,13 @@ namespace LessRoomyMoreShooty.States
 
         private void LevelEnd()
         {
-            TopDoor.IsOpen = true;
-            BottomDoor.IsOpen = true;
-            LeftDoor.IsOpen = true;
-            RightDoor.IsOpen = true;
+            if (!TopDoor.IsOpen)
+            {
+                TopDoor.IsOpen = true;
+                BottomDoor.IsOpen = true;
+                LeftDoor.IsOpen = true;
+                RightDoor.IsOpen = true;
+            }
         }
 
     }

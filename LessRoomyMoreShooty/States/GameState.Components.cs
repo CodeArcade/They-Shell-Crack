@@ -7,6 +7,8 @@ using System.Drawing;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
 using System;
 using LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems;
+using LessRoomyMoreShooty.Component.Sprites.Item.SpecialItems;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace LessRoomyMoreShooty.States
 {
@@ -317,6 +319,39 @@ namespace LessRoomyMoreShooty.States
 
         }
 
+        private void AddGameOverUi()
+        {
+            if (GetLabel("GameOverLevelLabel") != null) return;
+
+            AddComponent(new Label(ContentManager.KenneyMini)
+            {
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 220, GameArea.Y * 1.5f),
+                Text = "Game Over",
+                Name = "GameOverLabel",
+                FontColor = Color.White,
+                FontScale = 5
+            });
+
+            AddComponent(new Label(ContentManager.KenneyMini)
+            {
+                Position = new Vector2(JamGame.ScreenWidth / 2 - 260, GameArea.Y * 1.8f),
+                Text = $"You reachead level {Level}",
+                Name = "GameOverLevelLabel",
+                FontColor = Color.White,
+                FontScale = 3
+            });
+
+            Button button = new Button(ContentManager.ButtonTexture, ContentManager.KenneyMini)
+            {
+                Position = new Vector2(JamGame.ScreenWidth / 2 - 35 , GameArea.Y * 2.1f),
+                Text = "Restart"
+            };
+            button.OnClick += (sender, e) =>
+            {
+                StateManager.Reload();
+            };
+            AddComponent(button);
+        }
 
     }
 }

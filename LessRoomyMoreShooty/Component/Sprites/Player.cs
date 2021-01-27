@@ -190,19 +190,15 @@ namespace LessRoomyMoreShooty.Component.Sprites
             if (CurrentAmmo == 1) AudioManager.PlayEffect(ContentManager.LastBulletSoundEffect, 0.25f);
 
             int projectileCount = ShootAll ? CurrentAmmo : ProjectileCount;
-            for (int i = 0; i < projectileCount; i++)
-            {
-                base.Shoot(gameTime, direction, projectileCount);
-                if (CurrentAmmo == 0) break;
-            }
-
+            base.Shoot(gameTime, direction, projectileCount);
+            if (ShootAll) CurrentAmmo = 0;
         }
 
         private bool IsKeyDown(Keys key) => CurrentKeyboard.IsKeyDown(key);
 
         public override void TakeDamage(int damage)
         {
-            if (!CanTakeDamage)  return;
+            if (!CanTakeDamage) return;
 
             IFramesTimer = 0;
             base.TakeDamage(damage);

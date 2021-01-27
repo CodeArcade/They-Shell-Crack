@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace LessRoomyMoreShooty.Component.Sprites.Item.SpecialItem
+namespace LessRoomyMoreShooty.Component.Sprites.Item.SpecialItems
 {
     class ShotgunUpgrade : Item
     {

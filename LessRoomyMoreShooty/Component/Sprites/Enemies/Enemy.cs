@@ -14,7 +14,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
         {
             get
             {
-                Vector2 direction =  Player.Position - Position;
+                Vector2 direction = Player.Position - Position;
                 direction.Normalize();
 
                 return direction;
@@ -30,14 +30,21 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            IsActive = true; // is here so it does not shooting before on right coordinate in map
         }
 
         public void LevelUp(int targetLevel)
         {
-              OnLevelUp(targetLevel);
+            OnLevelUp(targetLevel);
         }
 
         protected abstract void OnLevelUp(int level);
+
+        protected void SetDirectionToPlayer()
+        {
+            if (IsActive)
+                Direction = DirectionToPlayer;
+            else Direction = Vector2.Zero;
+        }
+
     }
 }

@@ -21,7 +21,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             ProjectileSpeed = 300;
             RangeInSeconds = 1;
             Spread = 45;
-            MaxSpeed = 180;
+            MaxSpeed = 100;
             Size = new Size(56, 84);
 
             Texture = ContentManager.ButtonTexture;
@@ -36,11 +36,6 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             }
 
             base.Update(gameTime);
-        }
-
-        private void SetDirectionToPlayer()
-        {
-            Direction = DirectionToPlayer;
         }
 
         private void Move()
@@ -71,10 +66,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         protected override void OnLevelUp(int level)
         {
-            MaxHealth += (int)(level * 0.2);
+            MaxHealth += (int)(level * 0.1);
             CurrentHealth = MaxHealth;
-
-            Damage += (int)(level * 0.1);
         }
 
     }

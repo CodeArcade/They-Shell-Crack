@@ -8,18 +8,18 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
     {
         public Skeleton(Player player) : base(player)
         {
-            MaxHealth = 5;
-            CurrentHealth = 5;
-            Damage = 1;
+            MaxHealth = 4;
+            CurrentHealth = 4;
+            Damage = 2;
             AttackSpeedInSeconds = 0.5;
             MaxAmmo = 1;
             CurrentAmmo = 1;
             ReloadTimeInSeconds = 0.75;
-            ProjectileSpeed = 300;
+            ProjectileSpeed = 150;
             ProjectileCount = 1;
-            RangeInSeconds = 1;
+            RangeInSeconds = 1.5;
             Spread = 5;
-            MaxSpeed = 180;
+            MaxSpeed = 100;
             Size = new Size(56, 84);
 
             Texture = ContentManager.ButtonTexture;
@@ -35,11 +35,6 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             }
 
             base.Update(gameTime);
-        }
-
-        private void SetDirectionToPlayer()
-        {
-            Direction = DirectionToPlayer;
         }
 
         private void Shoot(GameTime gameTime)
@@ -58,10 +53,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         protected override void OnLevelUp(int level)
         {
-            MaxHealth += (int)(level * 0.2);
+            MaxHealth += (int)(level * 0.1);
             CurrentHealth = MaxHealth;
-
-            Damage += (int)(level * 0.1);
         }
     }
 }

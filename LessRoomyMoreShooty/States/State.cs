@@ -12,7 +12,7 @@ namespace LessRoomyMoreShooty.States
     {
         #region Fields
 
-        protected List<Component.Component> Components { get; set; }
+        public List<Component.Component> Components { get; set; }
 
         [Dependency]
         public ContentManager ContentManager { get; set; }
@@ -26,7 +26,7 @@ namespace LessRoomyMoreShooty.States
         [Dependency]
         public AudioManager AudioManager { get; set; }
 
-        public bool HasLoaded { get; protected set; }
+        public bool HasLoaded { get;  set; }
 
         #endregion
 

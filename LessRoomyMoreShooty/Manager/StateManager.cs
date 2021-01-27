@@ -8,6 +8,8 @@ namespace LessRoomyMoreShooty.Manager
     {
         public static State CurrentState { get; private set; }
         private static State NextState { get; set; }
+        private static string StateName { get; set; } 
+
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch) => CurrentState.Draw(gameTime, spriteBatch);
 
@@ -33,12 +35,13 @@ namespace LessRoomyMoreShooty.Manager
 
         public void Reload()
         {
-            CurrentState.Load();
+            NextState = (State)Program.UnityContainer.Resolve(CurrentState.GetType(), StateName);
         }
 
         public void ChangeTo<T>(string name) where T : State
         {
             NextState = (T)Program.UnityContainer.Resolve(typeof(T), name);
+            StateName = name;
         }
 
     }

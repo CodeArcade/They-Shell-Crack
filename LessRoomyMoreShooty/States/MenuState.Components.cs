@@ -8,7 +8,6 @@ namespace LessRoomyMoreShooty.States
 
         protected override void LoadComponents()
         {
-
             AddComponent(new Label(ContentManager.ButtonFont)
             {
                 Position = new Vector2(JamGame.ScreenWidth / 2, 100),

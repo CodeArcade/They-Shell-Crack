@@ -39,9 +39,8 @@ namespace LessRoomyMoreShooty
 
         static void RegisterStates()
         {
-            UnityContainer.RegisterSingleton<MenuState>(MenuState.Name);
-            UnityContainer.RegisterSingleton<GameState>(GameState.Name);
-            UnityContainer.RegisterSingleton<GameOverState>(GameOverState.Name);
+            UnityContainer.RegisterType<MenuState>(MenuState.Name);
+            UnityContainer.RegisterType<GameState>(GameState.Name);
         }
 
     }
