@@ -12,9 +12,9 @@ namespace LessRoomyMoreShooty.Component.Sprites.Item
 
         public override void OnPickup(Player player)
         {
-            player.MaxAmmo += 1;
+            player.MaxAmmo += 3;
             player.CurrentAmmo = player.MaxAmmo;
-            player.ReloadTimeInSeconds += 0.25f;
+            player.ReloadTimeInSeconds += 0.20f;
         }
     }
 }

@@ -37,8 +37,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
             };
 
             Texture = ContentManager.TransparentTexture;
-            Size = new Size(56, 84);
+            Size = new Size((int)(56 * 0.5), (int)(84 * 0.8));
 
+            AnimationManager.Scale = 0.5f;
             AnimationManager.Parent = this;
             AnimationManager.Play(Animations["idle"]);
 
@@ -49,10 +50,10 @@ namespace LessRoomyMoreShooty.Component.Sprites
             MaxAmmo = 10;
             CurrentAmmo = MaxAmmo;
             ReloadTimeInSeconds = 0.8;
-            AttackSpeedInSeconds = 0.25;
+            AttackSpeedInSeconds = 0.3;
             AttackSpeedTimer = AttackSpeedInSeconds;
             Spread = 3;
-            RangeInSeconds = 2;
+            RangeInSeconds = 2.5;
             ProjectileSpeed = 300;
             ProjectileCount = 1;
             Damage = 1;
@@ -60,9 +61,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             IFramesTimer = IFrames;
 
-            HitboxSize = new Size(45, 60);
-            HitBoxXOffSet = 5;
-            HitBoxYOffSet = 24;
+            HitboxSize = new Size((int)(45 * 0.5), (int)(60 * 0.5));
+            HitBoxXOffSet = (int)(5 * 0.5);
+            HitBoxYOffSet = (int)(24 * 0.5);
         }
 
         public override void Update(GameTime gameTime)

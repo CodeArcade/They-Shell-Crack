@@ -30,6 +30,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (!IsActive) Speed = 0;
         }
 
         public void LevelUp(int targetLevel)

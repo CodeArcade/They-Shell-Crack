@@ -12,8 +12,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems
 
         public override void OnPickup(Player player)
         {
-            if (player.CurrentHealth < player.MaxHealth - 2)
-                player.CurrentHealth += 2;
+            player.CurrentHealth += 4;
+            if (player.CurrentHealth > player.MaxHealth) player.CurrentHealth = player.MaxHealth;
         }
     }
 }

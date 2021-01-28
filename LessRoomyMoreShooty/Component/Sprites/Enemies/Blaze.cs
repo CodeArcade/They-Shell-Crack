@@ -16,13 +16,13 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             AttackSpeedInSeconds = 0.2;
             MaxAmmo = 3;
             CurrentAmmo = 3;
-            ReloadTimeInSeconds = 1.5;
+            ReloadTimeInSeconds = 2;
             ProjectileSpeed = 100;
             ProjectileCount = 1;
             RangeInSeconds = 4;
-            Spread = 25;
+            Spread = 20;
             MaxSpeed = 50;
-            Size = new Size(56, 84);
+            Size = new Size(28, 42);
 
             Texture = ContentManager.ButtonTexture;
         }

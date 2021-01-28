@@ -23,6 +23,8 @@ namespace LessRoomyMoreShooty.States
         public int RemainingLevelSeconds { get; set; }
         public double SecondTimer { get; set; }
         public bool IsGameOver { get; set; }
+        List<Enemy> EnemiesToSpawn = new List<Enemy>();
+        List<Door> DoorsToSpawnAt = new List<Door>();
 
         public Rectangle GameArea { get; set; } = new Rectangle(90, 240, 840, 450);
 
@@ -80,6 +82,12 @@ namespace LessRoomyMoreShooty.States
 
             if (!AreEnemiesAlive() && !AreItemsPresent())
             {
+                if (EnemiesToSpawn.Count > 0)
+                {
+                    SpawnEnemies();
+                    return;
+                }
+
                 LevelEnd();
             }
         }
@@ -127,7 +135,7 @@ namespace LessRoomyMoreShooty.States
                 RemainingSeconds += RemainingLevelSeconds;
 
             Level++;
-            RemainingLevelSeconds = 10;
+            RemainingLevelSeconds = 15;
 
             if (Level % 5 == 0)
             {
@@ -136,15 +144,14 @@ namespace LessRoomyMoreShooty.States
             else
             {
                 Random random = new Random();
-                List<Enemy> enemiesToSpawn = new List<Enemy>();
-                List<Door> doorsToSpawnAt = new List<Door>
+                DoorsToSpawnAt = new List<Door>
                 {
                     RightDoor,
                     LeftDoor,
                     TopDoor,
                     BottomDoor
                 };
-                doorsToSpawnAt.Remove(entry.Exit);
+                DoorsToSpawnAt.Remove(entry.Exit);
 
                 int enemyCount = (Level / 10) + 1;
 
@@ -153,46 +160,19 @@ namespace LessRoomyMoreShooty.States
                     switch (random.Next(0, 4))
                     {
                         case 0:
-                            enemiesToSpawn.Add(new Zombie(Player));
+                            EnemiesToSpawn.Add(new Zombie(Player));
                             break;
                         case 1:
-                            enemiesToSpawn.Add(new Skeleton(Player));
+                            EnemiesToSpawn.Add(new Skeleton(Player));
                             break;
                         case 2:
-                            enemiesToSpawn.Add(new Creeper(Player));
+                            EnemiesToSpawn.Add(new Creeper(Player));
                             break;
                         case 3:
-                            enemiesToSpawn.Add(new Blaze(Player));
+                            EnemiesToSpawn.Add(new Blaze(Player));
                             break;
                     }
                 }
-
-                foreach (Enemy enemy in enemiesToSpawn)
-                {
-                    Door door = doorsToSpawnAt[random.Next(0, 3)];
-                    Vector2 position = door.Position;
-
-                    enemy.LevelUp(Level);
-
-                    if (door == RightDoor)
-                    {
-                        enemy.Position = new Vector2(position.X - (enemy.Size.Width * 1.5f), position.Y);
-                    }
-                    else if (door == LeftDoor)
-                    {
-                        enemy.Position = new Vector2(position.X + (enemy.Size.Width * 0.5f), position.Y);
-                    }
-                    else if (door == TopDoor)
-                    {
-                        enemy.Position = new Vector2(position.X, position.Y + (enemy.Size.Height * 0.5f));
-                    }
-                    else if (door == BottomDoor)
-                    {
-                        enemy.Position = new Vector2(position.X, position.Y - (enemy.Size.Height * 1.5f));
-                    }
-                    AddComponent(enemy);
-                }
-
             }
         }
 
@@ -205,6 +185,41 @@ namespace LessRoomyMoreShooty.States
                 LeftDoor.IsOpen = true;
                 RightDoor.IsOpen = true;
             }
+        }
+
+        private void SpawnEnemies()
+        {
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (EnemiesToSpawn.Count == 0) return;
+
+                Door door = DoorsToSpawnAt[i];
+                Vector2 position = door.Position;
+                Enemy enemy = EnemiesToSpawn[EnemiesToSpawn.Count - 1];
+
+                enemy.LevelUp(Level);
+
+                if (door == RightDoor)
+                {
+                    enemy.Position = new Vector2(position.X - (enemy.Size.Width * 1.5f), position.Y);
+                }
+                else if (door == LeftDoor)
+                {
+                    enemy.Position = new Vector2(position.X + (enemy.Size.Width * 0.5f), position.Y);
+                }
+                else if (door == TopDoor)
+                {
+                    enemy.Position = new Vector2(position.X, position.Y + (enemy.Size.Height * 0.5f));
+                }
+                else if (door == BottomDoor)
+                {
+                    enemy.Position = new Vector2(position.X, position.Y - (enemy.Size.Height * 1.5f));
+                }
+                AddComponent(enemy);
+                EnemiesToSpawn.Remove(enemy);
+            }
+
         }
 
     }

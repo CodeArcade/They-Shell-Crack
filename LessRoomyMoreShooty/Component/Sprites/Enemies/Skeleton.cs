@@ -20,7 +20,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             RangeInSeconds = 1.5;
             Spread = 5;
             MaxSpeed = 100;
-            Size = new Size(56, 84);
+            Size = new Size(28, 42);
 
             Texture = ContentManager.ButtonTexture;
         }
