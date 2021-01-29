@@ -9,6 +9,7 @@ using System;
 using LessRoomyMoreShooty.Component.Sprites.Item.PickUpItems;
 using LessRoomyMoreShooty.Component.Sprites.Item.SpecialItems;
 using Color = Microsoft.Xna.Framework.Color;
+using LessRoomyMoreShooty.Component.Effects;
 
 namespace LessRoomyMoreShooty.States
 {

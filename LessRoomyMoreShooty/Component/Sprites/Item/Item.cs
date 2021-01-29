@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LessRoomyMoreShooty.Component.Effects;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Item
@@ -21,6 +22,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Item
         public override void OnCollision(Sprite sprite, GameTime gameTime)
         {
             if (!(sprite is Player) || IsRemoved) return;
+
+            CurrentState.AddComponent(new ItemPickUp(this, Position));
 
             IsRemoved = true;
             AudioManager.PlayEffect(ContentManager.ItemPickUpSoundEffect, 0.25f);
