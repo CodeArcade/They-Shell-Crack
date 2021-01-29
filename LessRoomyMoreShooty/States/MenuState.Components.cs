@@ -15,7 +15,7 @@ namespace LessRoomyMoreShooty.States
             {
                 Position = new Vector2((JamGame.ScreenWidth / 2) - 330, JamGame.ScreenHeight / 4),
                 Text = "They Shell Crack",
-                FontColor = Color.Black,
+                FontColor = Color.White,
                 FontScale = 5
             });
 

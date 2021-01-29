@@ -35,9 +35,11 @@ namespace LessRoomyMoreShooty.States
 
         private void AddUi()
         {
+            int xOffset = 25;
+
             AddComponent(new Sprite()
             {
-                Position = new Vector2(180, 53),
+                Position = new Vector2(180 + xOffset, 53),
                 Texture = ContentManager.HeartTexture,
                 Size = new Size(30, 30),
                 Collide = false
@@ -47,13 +49,16 @@ namespace LessRoomyMoreShooty.States
             {
                 Text = "X/X",
                 Name = "HealthLabel",
-                Position = new Vector2(220, 50),
-                FontScale = 1.5f
-            });
+                Position = new Vector2(220 + xOffset, 50),
+                FontScale = 1.5f,
+                FontColor = Color.White
+            }) ;
+
+            xOffset = 25;
 
             AddComponent(new Sprite()
             {
-                Position = new Vector2(350, 53),
+                Position = new Vector2(350 + xOffset, 53),
                 Texture = ContentManager.BulletsTexture,
                 Size = new Size(30, 30),
                 Collide = false
@@ -63,29 +68,27 @@ namespace LessRoomyMoreShooty.States
             {
                 Text = "X/X",
                 Name = "AmmoLabel",
-                Position = new Vector2(390, 50),
-                FontScale = 1.5f
+                Position = new Vector2(390 + xOffset, 50),
+                FontScale = 1.5f,
+                FontColor = Color.White
             });
 
-            AddComponent(new Sprite()
-            {
-                Position = new Vector2(510, 53),
-                Texture = ContentManager.ArrowUpTexture,
-                Size = new Size(30, 30),
-                Collide = false
-            });
+            xOffset = 100;
 
             AddComponent(new Label(ContentManager.KenneyMini)
             {
                 Text = "1",
                 Name = "LevelLabel",
-                Position = new Vector2(550, 50),
-                FontScale = 1.5f
+                Position = new Vector2(535 + xOffset, 50),
+                FontScale = 1.5f,
+                FontColor = Color.White
             });
+
+            xOffset = 175;
 
             AddComponent(new Sprite()
             {
-                Position = new Vector2(650, 53),
+                Position = new Vector2(650 + xOffset, 53),
                 Texture = ContentManager.ClockTexture,
                 Size = new Size(30, 30),
                 Collide = false
@@ -95,8 +98,9 @@ namespace LessRoomyMoreShooty.States
             {
                 Text = "10:00",
                 Name = "TimeLabel",
-                Position = new Vector2(690, 50),
-                FontScale = 1.5f
+                Position = new Vector2(690 + xOffset, 50),
+                FontScale = 1.5f,
+                FontColor = Color.White
             });
         }
 
@@ -119,13 +123,13 @@ namespace LessRoomyMoreShooty.States
 
             TopDoor = new Door()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 220),
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 220 - Player.Size.Height * 0.5f),
                 Size = new Size(100, 20),
             };
 
             BottomDoor = new Door()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698),
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698 - 20),
                 Size = new Size(100, 20),
             };
 
@@ -164,7 +168,7 @@ namespace LessRoomyMoreShooty.States
             // Wall behind top door
             AddComponent(new Obstacle()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 200),
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 200 - Player.Size.Height * 0.5f),
                 Size = new Size(100, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -172,7 +176,7 @@ namespace LessRoomyMoreShooty.States
             // Wall behind bottom door
             AddComponent(new Obstacle()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698 + 20),
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 50, 698 + 40),
                 Size = new Size(100, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -180,7 +184,7 @@ namespace LessRoomyMoreShooty.States
             // top left-> left middle
             AddComponent(new Obstacle()
             {
-                Position = new Vector2(0, 220),
+                Position = new Vector2(0, 220 - Player.Size.Height * 0.5f),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -188,7 +192,7 @@ namespace LessRoomyMoreShooty.States
             // left midlle -> top right
             AddComponent(new Obstacle()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, 220),
+                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, 220 - Player.Size.Height * 0.5f),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -212,7 +216,7 @@ namespace LessRoomyMoreShooty.States
             // bottom left-> bottom middle
             AddComponent(new Obstacle()
             {
-                Position = new Vector2(0, JamGame.ScreenHeight - 70),
+                Position = new Vector2(0, JamGame.ScreenHeight - 90),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -220,7 +224,7 @@ namespace LessRoomyMoreShooty.States
             // bottom midlle -> bottom right
             AddComponent(new Obstacle()
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, JamGame.ScreenHeight - 70),
+                Position = new Vector2((JamGame.ScreenWidth / 2) + 50, JamGame.ScreenHeight - 90),
                 Size = new Size((JamGame.ScreenWidth / 2) - 50, 20),
                 Texture = ContentManager.TransparentTexture
             });
@@ -287,9 +291,9 @@ namespace LessRoomyMoreShooty.States
                 Components.Remove(pickUp);
             };
 
-            statUp1.Position = new Vector2(GameArea.X + (GameArea.Width / 2) - (statUp1.Size.Width * 1.5f), GameArea.Y + (GameArea.Height / 2));
-            statUp2.Position = new Vector2(GameArea.X + (GameArea.Width / 2), GameArea.Y + (GameArea.Height / 2));
-            pickUp.Position = new Vector2(GameArea.X + (GameArea.Width / 2) + (statUp1.Size.Width * 0.5f) + statUp2.Size.Width, GameArea.Y + (GameArea.Height / 2));
+            statUp1.Position = new Vector2(GameArea.X + (GameArea.Width / 2) - (statUp1.Size.Width * 3), GameArea.Y + (GameArea.Height / 2) - statUp1.Size.Height * 0.7f);
+            statUp2.Position = new Vector2(GameArea.X + (GameArea.Width / 2) - statUp2.Size.Width / 2, GameArea.Y + (GameArea.Height / 2) - statUp2.Size.Height * 0.7f);
+            pickUp.Position = new Vector2(GameArea.X + (GameArea.Width / 2) + (pickUp.Size.Width * 2), GameArea.Y + (GameArea.Height / 2) - pickUp.Size.Height * 0.7f);
 
             AddComponent(statUp1);
             AddComponent(statUp2);

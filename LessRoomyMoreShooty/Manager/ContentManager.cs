@@ -11,6 +11,9 @@ namespace LessRoomyMoreShooty.Manager
         public JamGame JamGame { get; set; }
 
         public Texture2D BackgroundTexture => JamGame.Content.Load<Texture2D>("Background/Background");
+        public Texture2D MenuBackgroundTexture => JamGame.Content.Load<Texture2D>("Background/MenuBackground");
+        public Texture2D DoorsOpendTexture => JamGame.Content.Load<Texture2D>("Background/DoorsOpend");
+        public Texture2D DoorsClosedTexture => JamGame.Content.Load<Texture2D>("Background/DoorsClosed");
         public Texture2D PlayerIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Idle");
         public Texture2D PlayerWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Walk");
 
@@ -21,19 +24,24 @@ namespace LessRoomyMoreShooty.Manager
         public Texture2D CreeperWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Creeper/Walk");
 
         public Texture2D SkeletonWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skeleton/Walk");
-        public Texture2D SkeletonIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemey/Skeleton/Idle");
+        public Texture2D SkeletonIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skeleton/Idle");
+        public Texture2D BowTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skeleton/Bow");
+        public Texture2D SkeletonBulletTexture=> JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skeleton/SkeletonBullet");
 
         public Texture2D BlazeIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Blaze/Idle");
+        public Texture2D BlazeBulletTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Blaze/BlazeBullet");
 
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");
         public SoundEffect ButtonClickSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Button");
         public SpriteFont ButtonFont => JamGame.Content.Load<SpriteFont>("Fonts/ButtonFont");
         public SpriteFont KenneyMini => JamGame.Content.Load<SpriteFont>("Fonts/KenneyMini");
 
-        public Texture2D BulletTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Bullet");
+        public Texture2D PlayerBulletTexture => JamGame.Content.Load<Texture2D>("Sprites/Player/PlayerBullet");
         public Texture2D ArrowTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Arrow");
         public Texture2D FloorExplosionTexture => JamGame.Content.Load<Texture2D>("Sprites/General/BoomFloor");
         public Texture2D GunTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Gun");
+
+        public Texture2D SpotShadowTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Shadow");
 
         public Texture2D HeartTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart");
         public Texture2D BulletsTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets");

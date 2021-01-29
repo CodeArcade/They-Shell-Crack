@@ -2,6 +2,9 @@
 using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Drawing;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
@@ -25,6 +28,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public bool CanShoot { get; set; } = true;
         public bool ShootAll { get; set; }
 
+        protected virtual Texture2D SpotShadow => ContentManager.SpotShadowTexture; 
+
+
         public override void Update(GameTime gameTime)
         {
             CheckHealth();
@@ -42,6 +48,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
             MuzzlePoint = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(SpotShadow, Position, Color.White);
+            base.Draw(gameTime, spriteBatch);
         }
 
         protected virtual void DoReload(GameTime gameTime)
@@ -68,7 +80,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             IsRemoved = true;
         }
 
-        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1)
+        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null)
         {
             if (!CanShoot) return;
 
@@ -79,7 +91,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
 
             for (int i = 0; i < (bulletCount <= 0 ? ProjectileCount : bulletCount); i++)
-                CurrentState.AddComponent(new Projectile(direction, this));
+                CurrentState.AddComponent(new Projectile(direction, this, texture, size));
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)

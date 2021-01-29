@@ -18,6 +18,9 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
                 { "idle", new Animation(ContentManager.ZombieIdleAnimation, 1) { FrameSpeed = 0.1f } }
             };
 
+            AnimationManager.Play(Animations["walk"]);
+            AnimationManager.Parent = this;
+
             MaxHealth = 5;
             CurrentHealth = 5;
             Damage = 1;
@@ -29,7 +32,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             RangeInSeconds = 1;
             Spread = 45;
             MaxSpeed = 100;
-            Size = new Size(28, 42);
+            Size = new Size(56, 84);
 
             Texture = ContentManager.ZombieIdleAnimation;
         }
@@ -47,10 +50,22 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         private void Move()
         {
-            if (DistanceToPlayer > 65)
+            if (DistanceToPlayer > 30)
+            {
+                AnimationManager.Play(Animations["walk"]);
+
+                if (Direction.X > 0)
+                    AnimationManager.Flip = false;
+                else if (Direction.X < 0)
+                    AnimationManager.Flip = true;
+
                 Speed = MaxSpeed;
+            }
             else
+            {
                 Speed = 0;
+                AnimationManager.Play(Animations["idle"]);
+            }
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)

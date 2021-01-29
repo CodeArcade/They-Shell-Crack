@@ -21,7 +21,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Environment
                     Texture = ContentManager.TransparentTexture;
                 }
                 else
-                    Texture = ContentManager.ButtonTexture;
+                    Texture = ContentManager.TransparentTexture;
             }
         }
 

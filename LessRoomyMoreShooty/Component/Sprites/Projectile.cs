@@ -1,11 +1,10 @@
-﻿using LessRoomyMoreShooty.Component.Effects;
-using LessRoomyMoreShooty.Component.Sprites.Enemies;
+﻿using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
-using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
+using System.Drawing;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
@@ -15,14 +14,23 @@ namespace LessRoomyMoreShooty.Component.Sprites
         private double TTL { get; set; }
         private double TimeLived { get; set; }
 
-        public Projectile(Vector2 direction, Entity parent)
+        public Projectile(Vector2 direction, Entity parent, Texture2D texture = null, Size? size = null)
         {
             Parent = parent;
             Position = parent.MuzzlePoint;
             Speed = parent.ProjectileSpeed;
             Direction = direction;
-            Texture = ContentManager.BulletTexture;
-            Size = new System.Drawing.Size(10, 10);
+
+            if (texture is null)
+                Texture = ContentManager.PlayerBulletTexture;
+            else
+                Texture = texture;
+
+            if (size is null)
+                Size = new Size(10, 10);
+            else
+                Size = (Size)size;
+
             TTL = parent.RangeInSeconds;
 
             Random random = new Random();

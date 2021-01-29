@@ -95,6 +95,15 @@ namespace LessRoomyMoreShooty.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ContentManager.BackgroundTexture, new Rectangle(0, 0, 1024, 768), Color.White);
+
+            if (!AreEnemiesAlive() && !AreItemsPresent())
+                if (EnemiesToSpawn.Count > 0)
+                    spriteBatch.Draw(ContentManager.DoorsClosedTexture, new Rectangle(0, 0, 1024, 768), Color.White);
+                else
+                    spriteBatch.Draw(ContentManager.DoorsOpendTexture, new Rectangle(0, 0, 1024, 768), Color.White);
+            else
+                spriteBatch.Draw(ContentManager.DoorsClosedTexture, new Rectangle(0, 0, 1024, 768), Color.White);
+
             base.Draw(gameTime, spriteBatch);
         }
 

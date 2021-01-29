@@ -23,6 +23,7 @@ namespace LessRoomyMoreShooty.Manager
         public Sprite Parent { get; set; }
         public bool Reverse { get; set; }
         public bool FlipVertically { get; set; }
+        public float Rotation { get; set; } = 0;
 
         public void Draw(SpriteBatch spriteBatch, Color? color = null)
         {
@@ -35,12 +36,12 @@ namespace LessRoomyMoreShooty.Manager
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                    0,
                                                    Animation.FrameWidth,
-                                                   Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
+                                                   Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
                 else
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
+                                               Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
 
             }
             else
@@ -49,12 +50,12 @@ namespace LessRoomyMoreShooty.Manager
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.None | SpriteEffects.FlipVertically, 0);
+                                               Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.None | SpriteEffects.FlipVertically, 0);
                 else
                     spriteBatch.Draw(Animation.Texture, Position, new Rectangle(Animation.CurrentFrame * Animation.FrameWidth,
                                                0,
                                                Animation.FrameWidth,
-                                               Animation.FrameHeight), (Color)color, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
+                                               Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
 
         }
@@ -73,7 +74,18 @@ namespace LessRoomyMoreShooty.Manager
                 else
                     Animation.CurrentFrame++;
 
-                if (Animation.CurrentFrame >= Animation.FrameCount) Animation.CurrentFrame = 0;
+                if (Animation.CurrentFrame >= Animation.FrameCount) 
+                {
+                    if (Animation.IsLooping)
+                    {
+                        Animation.CurrentFrame = 0;
+                    }
+                    else
+                    {
+                        IsPlaying = false;
+                    }
+                }
+                
                 if (Animation.CurrentFrame < 0) Animation.CurrentFrame = Animation.FrameCount - 1;
             }
         }

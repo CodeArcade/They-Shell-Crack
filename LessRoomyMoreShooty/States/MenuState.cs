@@ -23,6 +23,8 @@ namespace LessRoomyMoreShooty.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(ContentManager.MenuBackgroundTexture, new Rectangle(0, 0, 1024, 768), Color.White);
+
             base.Draw(gameTime, spriteBatch);
         }
 

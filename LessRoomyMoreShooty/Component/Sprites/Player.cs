@@ -11,12 +11,16 @@ namespace LessRoomyMoreShooty.Component.Sprites
 {
     public class Player : Entity
     {
+        private readonly AnimationManager GunAnimationManager;
+
         private KeyboardState CurrentKeyboard { get; set; }
         private Dictionary<string, Animation> Animations { get; set; }
 
         public double IFrames { get; } = 2;
         public double IFramesTimer { get; set; }
         public bool CanTakeDamage => IFramesTimer > IFrames;
+
+        public float PlayerScale { get; set; } = 1;
 
         public Keys Left { get; set; } = Keys.A;
         public Keys Right { get; set; } = Keys.D;
@@ -37,9 +41,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
             };
 
             Texture = ContentManager.TransparentTexture;
-            Size = new Size((int)(56 * 0.5), (int)(84 * 0.8));
+            Size = new Size((int)(56 * PlayerScale), (int)(84 * PlayerScale));
 
-            AnimationManager.Scale = 0.5f;
+            AnimationManager.Scale = PlayerScale;
             AnimationManager.Parent = this;
             AnimationManager.Play(Animations["idle"]);
 
@@ -53,7 +57,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             AttackSpeedInSeconds = 0.3;
             AttackSpeedTimer = AttackSpeedInSeconds;
             Spread = 3;
-            RangeInSeconds = 2.5;
+            RangeInSeconds = 2;
             ProjectileSpeed = 300;
             ProjectileCount = 1;
             Damage = 1;
@@ -61,9 +65,16 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             IFramesTimer = IFrames;
 
-            HitboxSize = new Size((int)(45 * 0.5), (int)(60 * 0.5));
-            HitBoxXOffSet = (int)(5 * 0.5);
-            HitBoxYOffSet = (int)(24 * 0.5);
+            HitboxSize = new Size((int)(45 * PlayerScale), (int)(60 * PlayerScale));
+            HitBoxXOffSet = (int)(5 * PlayerScale);
+            HitBoxYOffSet = (int)(24 * PlayerScale);
+
+            GunAnimationManager = new AnimationManager()
+            {
+                Scale = 0.5f
+            };
+            GunAnimationManager.Play(new Animation(ContentManager.GunTexture, 1));
+            GunAnimationManager.Position = new Vector2(-20, -20);
         }
 
         public override void Update(GameTime gameTime)
@@ -82,7 +93,9 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             Shoot(gameTime);
 
+            if (GunAnimationManager.IsPlaying) GunAnimationManager.Update(gameTime);
             base.Update(gameTime);
+            MuzzlePoint = GunAnimationManager.Position;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -95,10 +108,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
                     spriteBatch.Draw(Texture, Rectangle, Color.Red);
 
                 ParticleManager.Draw(gameTime, spriteBatch);
+                if (GunAnimationManager.IsPlaying) GunAnimationManager.Draw(spriteBatch);
                 return;
             }
 
             base.Draw(gameTime, spriteBatch);
+            if (GunAnimationManager.IsPlaying) GunAnimationManager.Draw(spriteBatch);
 
         }
 
@@ -124,12 +139,18 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Left) && !IsKeyDown(Right))
             {
+                GunAnimationManager.Rotation = 0;
+                GunAnimationManager.Flip = true;
+                GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
                 AnimationManager.Flip = true;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(-1, Direction.Y);
             }
             else if (IsKeyDown(Right) && !IsKeyDown(Left))
             {
+                GunAnimationManager.Rotation = 0;
+                GunAnimationManager.Flip = false;
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
                 AnimationManager.Flip = false;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(1, Direction.Y);
@@ -141,11 +162,17 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Up) && !IsKeyDown(Down))
             {
+                GunAnimationManager.Rotation = -90;
+                GunAnimationManager.Flip = false;
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, -1);
             }
             else if (IsKeyDown(Down) && !IsKeyDown(Up))
             {
+                GunAnimationManager.Rotation = 90;
+                GunAnimationManager.Flip = false;
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, 1);
             }
@@ -165,26 +192,39 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         private void Shoot(GameTime gameTime)
         {
+
             if (IsKeyDown(ShootLeft))
             {
+                GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
+                GunAnimationManager.Rotation = 0;
+                GunAnimationManager.Flip = true;
                 Shoot(gameTime, new Vector2(-1, 0));
             }
             else if (IsKeyDown(ShootRight))
             {
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
+                GunAnimationManager.Rotation = 0;
+                GunAnimationManager.Flip = false;
                 Shoot(gameTime, new Vector2(1, 0));
             }
             else if (IsKeyDown(ShootUp))
             {
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
+                GunAnimationManager.Rotation = -90;
+                GunAnimationManager.Flip = false;
                 Shoot(gameTime, new Vector2(0, -1));
             }
             else if (IsKeyDown(ShootDown))
             {
+                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
+                GunAnimationManager.Rotation = 90;
+                GunAnimationManager.Flip = false;
                 Shoot(gameTime, new Vector2(0, 1));
             }
             else { return; }
         }
 
-        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1)
+        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null)
         {
             if (!CanShoot) return;
 

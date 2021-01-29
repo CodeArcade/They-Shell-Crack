@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using LessRoomyMoreShooty.Models;
+using System;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
@@ -8,6 +9,8 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
     {
         protected Player Player { get; set; }
         protected Dictionary<string, Animation> Animations { get; set; }
+
+        public bool DidPlaySpawnAnimation { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -25,6 +28,14 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         }
 
+        protected float AngleToPlayer
+        {
+            get
+            {
+                return (float)Math.Atan2(Player.Position.Y - Position.Y, Player.Position.X - Position.X);
+            }
+        }
+
         public Enemy(Player player)
         {
             Player = player;
@@ -32,6 +43,14 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         public override void Update(GameTime gameTime)
         {
+            if (!DidPlaySpawnAnimation && IsActive)
+            {
+                ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.ObstacleHitParticle, 50, 20);
+                AudioManager.PlayEffect(ContentManager.ButtonClickSoundEffect, 0.15f, 0.1f);
+
+                DidPlaySpawnAnimation = true;
+            }
+
             base.Update(gameTime);
             if (!IsActive) Speed = 0;
         }
