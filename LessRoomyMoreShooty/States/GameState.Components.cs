@@ -53,7 +53,7 @@ namespace LessRoomyMoreShooty.States
                 Position = new Vector2(220 + xOffset, 50),
                 FontScale = 1.5f,
                 FontColor = Color.White
-            }) ;
+            });
 
             xOffset = 25;
 
@@ -328,35 +328,32 @@ namespace LessRoomyMoreShooty.States
         {
             if (GetLabel("GameOverLevelLabel") != null) return;
 
-            AddComponent(new Label(ContentManager.KenneyMini)
+            Button button = new Button(ContentManager.GameOverTexture, ContentManager.KenneyMini)
             {
-                Position = new Vector2((JamGame.ScreenWidth / 2) - 220, GameArea.Y * 1.5f),
-                Text = "Game Over",
-                Name = "GameOverLabel",
-                FontColor = Color.White,
-                FontScale = 5
-            });
-
-            AddComponent(new Label(ContentManager.KenneyMini)
-            {
-                Position = new Vector2(JamGame.ScreenWidth / 2 - 260, GameArea.Y * 1.8f),
-                Text = $"You reentered {Level} times",
-                Name = "GameOverLevelLabel",
-                FontColor = Color.White,
-                FontScale = 3
-            });
-
-            Button button = new Button(ContentManager.ButtonTexture, ContentManager.KenneyMini)
-            {
-                Position = new Vector2(JamGame.ScreenWidth / 2 - 50, GameArea.Y * 2.1f),
-                Text = "Restart",
-                Size = new Size(100, 50)
+                Position = new Vector2((JamGame.ScreenWidth / 2) - 220, GameArea.Y - 40)
             };
             button.OnClick += (sender, e) =>
             {
                 StateManager.Reload();
             };
             AddComponent(button);
+
+            AddComponent(new Sprite()
+            {
+                Texture = ContentManager.GameOverAgainTexture,
+                Position = new Vector2((JamGame.ScreenWidth / 2) + 220, GameArea.Y )
+            });
+
+            AddComponent(new Label(ContentManager.KenneyMini)
+            {
+                Position = new Vector2(JamGame.ScreenWidth / 2 - 225, GameArea.Y * 2.4f),
+                Text =  Level == 1? $"You reentered {Level} time": $"You reentered {Level} times",
+                Name = "GameOverLevelLabel",
+                FontColor = Color.White,
+                FontScale = 3
+            });
+
+
         }
 
     }
