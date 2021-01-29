@@ -30,6 +30,7 @@ namespace LessRoomyMoreShooty.Manager
 
         public Texture2D BlazeIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Blaze/Idle");
         public Texture2D BlazeBulletTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Blaze/BlazeBullet");
+        public SoundEffect BlazeShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sprites/Enemy/Blaze/BlazeShoot");
 
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");
         public SoundEffect ButtonClickSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Button");

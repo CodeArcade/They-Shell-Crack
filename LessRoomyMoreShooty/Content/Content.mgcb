@@ -165,6 +165,12 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Enemy/Blaze/BlazeBullet.png
 
+#begin Sprites/Enemy/Blaze/BlazeShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sprites/Enemy/Blaze/BlazeShoot.wav
+
 #begin Sprites/Enemy/Blaze/Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -50,7 +50,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
         private void Shoot(GameTime gameTime)
         {
             if (DistanceToPlayer <= 500)
-                Shoot(gameTime, Direction, texture: ContentManager.BlazeBulletTexture, size: new Size(30, 30));
+                Shoot(gameTime, Direction, texture: ContentManager.BlazeBulletTexture, size: new Size(30, 30), soundEffect: ContentManager.BlazeShootSoundEffect);
         }
 
         private void Move()

@@ -2,6 +2,7 @@
 using LessRoomyMoreShooty.Component.Sprites.Enemies;
 using LessRoomyMoreShooty.Component.Sprites.Environment;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
@@ -80,7 +81,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             IsRemoved = true;
         }
 
-        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null)
+        protected virtual void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null, SoundEffect soundEffect = null)
         {
             if (!CanShoot) return;
 
@@ -88,7 +89,11 @@ namespace LessRoomyMoreShooty.Component.Sprites
             AttackSpeedTimer = 0;
 
             ParticleManager.GenerateNewParticle(Color.White, MuzzlePoint, ContentManager.ShootParticle, 3, 5);
-            AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
+            
+            if(soundEffect is null)
+                AudioManager.PlayEffect(ContentManager.ShootSoundEffect, 0.15f);
+            else
+                AudioManager.PlayEffect(soundEffect, 0.15f);
 
             for (int i = 0; i < (bulletCount <= 0 ? ProjectileCount : bulletCount); i++)
                 CurrentState.AddComponent(new Projectile(direction, this, texture, size));

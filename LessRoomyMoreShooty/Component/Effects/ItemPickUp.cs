@@ -1,7 +1,6 @@
 ﻿using LessRoomyMoreShooty.Component.Controls;
 using LessRoomyMoreShooty.Component.Sprites.Item;
 using Microsoft.Xna.Framework;
-using System;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace LessRoomyMoreShooty.Component.Effects
@@ -16,7 +15,7 @@ namespace LessRoomyMoreShooty.Component.Effects
             Font = ContentManager.KenneyMini;
             Text = item.Name; 
             FontColor = Color.White;
-            TTL = 3;
+            TTL = 2;
             Position = position;
             FontScale = 2;
         }

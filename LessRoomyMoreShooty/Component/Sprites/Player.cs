@@ -1,6 +1,7 @@
 ﻿using LessRoomyMoreShooty.Manager;
 using LessRoomyMoreShooty.Models;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         private KeyboardState CurrentKeyboard { get; set; }
         private Dictionary<string, Animation> Animations { get; set; }
 
-        public double IFrames { get; } = 2;
+        public double IFrames { get; } = 1.25;
         public double IFramesTimer { get; set; }
         public bool CanTakeDamage => IFramesTimer > IFrames;
 
@@ -224,7 +225,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             else { return; }
         }
 
-        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null)
+        protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null, SoundEffect soundEffect = null)
         {
             if (!CanShoot) return;
 
