@@ -14,12 +14,26 @@ namespace LessRoomyMoreShooty.Manager
         public Texture2D PlayerIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Idle");
         public Texture2D PlayerWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Player/Walk");
 
+        public Texture2D ZombieIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Zombie/Idle");
+        public Texture2D ZombieWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Zombie/Walk");
+
+        public Texture2D CreeperIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Creeper/Idle");
+        public Texture2D CreeperWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Creeper/Walk");
+
+        public Texture2D SkeletonWalkAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skeleton/Walk");
+        public Texture2D SkeletonIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemey/Skeleton/Idle");
+
+        public Texture2D BlazeIdleAnimation => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Blaze/Idle");
+
         public Texture2D ButtonTexture => JamGame.Content.Load<Texture2D>("Sprites/Button/Button");
         public SoundEffect ButtonClickSoundEffect => JamGame.Content.Load<SoundEffect>("Sound/Button");
         public SpriteFont ButtonFont => JamGame.Content.Load<SpriteFont>("Fonts/ButtonFont");
         public SpriteFont KenneyMini => JamGame.Content.Load<SpriteFont>("Fonts/KenneyMini");
 
         public Texture2D BulletTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Bullet");
+        public Texture2D ArrowTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Arrow");
+        public Texture2D FloorExplosionTexture => JamGame.Content.Load<Texture2D>("Sprites/General/BoomFloor");
+        public Texture2D GunTexture => JamGame.Content.Load<Texture2D>("Sprites/General/Gun");
 
         public Texture2D HeartTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Heart");
         public Texture2D BulletsTexture => JamGame.Content.Load<Texture2D>("Sprites/Ui/Bullets");

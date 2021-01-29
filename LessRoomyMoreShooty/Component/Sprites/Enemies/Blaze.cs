@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
+using LessRoomyMoreShooty.Models;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
@@ -10,6 +10,10 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
     {
         public Blaze(Player player) : base(player)
         {
+            Animations = new Dictionary<string, Animation>
+            {
+                {"idle", new Animation(ContentManager.BlazeIdleAnimation, 12) { FrameSpeed = 0.05f } }
+            };
             MaxHealth = 4;
             CurrentHealth = 4;
             Damage = 2;

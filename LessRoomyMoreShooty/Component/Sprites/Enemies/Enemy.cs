@@ -1,10 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using LessRoomyMoreShooty.Models;
 
 namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 {
     public abstract class Enemy : Entity
     {
         protected Player Player { get; set; }
+        protected Dictionary<string, Animation> Animations { get; set; }
 
         public bool IsActive { get; set; }
 

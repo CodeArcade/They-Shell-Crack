@@ -32,8 +32,8 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             Animations = new Dictionary<string, Animation>
             {
-                { "walk", new Animation(ContentManager.PlayerWalkAnimation, 8) { FrameSpeed = 0.05f } },
-                { "idle", new Animation(ContentManager.PlayerIdleAnimation, 4) { FrameSpeed = 0.1f } }
+                { "walk", new Animation(ContentManager.PlayerWalkAnimation, 2) { FrameSpeed = 0.15f } },
+                { "idle", new Animation(ContentManager.PlayerIdleAnimation, 1) { FrameSpeed = 0.1f } }
             };
 
             Texture = ContentManager.TransparentTexture;
@@ -124,13 +124,13 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Left) && !IsKeyDown(Right))
             {
-                AnimationManager.Flip = false;
+                AnimationManager.Flip = true;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(-1, Direction.Y);
             }
             else if (IsKeyDown(Right) && !IsKeyDown(Left))
             {
-                AnimationManager.Flip = true;
+                AnimationManager.Flip = false;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(1, Direction.Y);
             }

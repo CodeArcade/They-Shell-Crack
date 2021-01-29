@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LessRoomyMoreShooty.Models;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,6 +12,12 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
 
         public Zombie(Player player) : base(player)
         {
+            Animations = new Dictionary<string, Animation>
+            {
+                { "walk", new Animation(ContentManager.ZombieWalkAnimation, 2) { FrameSpeed = 0.15f } },
+                { "idle", new Animation(ContentManager.ZombieIdleAnimation, 1) { FrameSpeed = 0.1f } }
+            };
+
             MaxHealth = 5;
             CurrentHealth = 5;
             Damage = 1;
@@ -24,7 +31,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Enemies
             MaxSpeed = 100;
             Size = new Size(28, 42);
 
-            Texture = ContentManager.ButtonTexture;
+            Texture = ContentManager.ZombieIdleAnimation;
         }
 
         public override void Update(GameTime gameTime)
