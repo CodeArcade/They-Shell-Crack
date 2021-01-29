@@ -2,11 +2,16 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Drawing;
+using Color = Microsoft.Xna.Framework.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace LessRoomyMoreShooty.Component.Controls
 {
     public class Button : Component
     {
+        private Size InternalSize { get; set; }
+
         private MouseState CurrentMouse { get; set; }
         private MouseState PreviousMouse { get; set; }
         private bool IsMouseOver { get; set; }
@@ -17,13 +22,33 @@ namespace LessRoomyMoreShooty.Component.Controls
         public SpriteFont Font { get; set; }
         public string Text { get; set; }
         public bool Clicked { get; private set; }
+
+        public Size Size
+        {
+            get
+            {
+                if (InternalSize == Size.Empty)
+                {
+                    if (AnimationManager.IsPlaying)
+                        InternalSize = new Size(AnimationManager.AnimationRectangle.Width, AnimationManager.AnimationRectangle.Height);
+                    else
+                        InternalSize = new Size(Texture.Width, Texture.Height);
+                }
+                return InternalSize;
+            }
+            set
+            {
+                InternalSize = value;
+            }
+        }
+
         public Rectangle Rectangle
         {
             get
             {
                 if (AnimationManager.IsPlaying) return AnimationManager.AnimationRectangle;
 
-                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, Size.Width, Size.Height);
             }
         }
         public Texture2D Texture { get; set; }

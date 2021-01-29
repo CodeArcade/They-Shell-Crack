@@ -2,7 +2,6 @@
 using LessRoomyMoreShooty.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Unity;
 
 namespace LessRoomyMoreShooty
@@ -28,7 +27,7 @@ namespace LessRoomyMoreShooty
 
         protected override void Initialize()
         {
-            Window.Title = "Less Roomy, more Shooty";
+            Window.Title = "They Shell Crack";
             IsMouseVisible = true;
 
             // Set Screen size to HD-READY
