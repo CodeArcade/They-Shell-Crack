@@ -343,8 +343,9 @@ namespace LessRoomyMoreShooty.States
 
             Button button = new Button(ContentManager.ButtonTexture, ContentManager.KenneyMini)
             {
-                Position = new Vector2(JamGame.ScreenWidth / 2 - 35 , GameArea.Y * 2.1f),
-                Text = "Restart"
+                Position = new Vector2(JamGame.ScreenWidth / 2 - 50, GameArea.Y * 2.1f),
+                Text = "Restart",
+                Size = new Size(100, 50)
             };
             button.OnClick += (sender, e) =>
             {
