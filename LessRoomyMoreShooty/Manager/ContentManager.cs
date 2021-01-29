@@ -11,6 +11,7 @@ namespace LessRoomyMoreShooty.Manager
         public JamGame JamGame { get; set; }
 
         public Texture2D BackgroundTexture => JamGame.Content.Load<Texture2D>("Background/Background");
+        public Texture2D TitleTexture => JamGame.Content.Load<Texture2D>("Background/Title");
         public Texture2D MenuBackgroundTexture => JamGame.Content.Load<Texture2D>("Background/MenuBackground");
         public Texture2D DoorsOpendTexture => JamGame.Content.Load<Texture2D>("Background/DoorsOpend");
         public Texture2D DoorsClosedTexture => JamGame.Content.Load<Texture2D>("Background/DoorsClosed");

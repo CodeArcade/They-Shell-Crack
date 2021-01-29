@@ -340,7 +340,7 @@ namespace LessRoomyMoreShooty.States
             AddComponent(new Label(ContentManager.KenneyMini)
             {
                 Position = new Vector2(JamGame.ScreenWidth / 2 - 260, GameArea.Y * 1.8f),
-                Text = $"You reachead level {Level}",
+                Text = $"You reentered {Level} times",
                 Name = "GameOverLevelLabel",
                 FontColor = Color.White,
                 FontScale = 3

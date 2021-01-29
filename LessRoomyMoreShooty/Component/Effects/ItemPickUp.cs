@@ -15,7 +15,7 @@ namespace LessRoomyMoreShooty.Component.Effects
             Font = ContentManager.KenneyMini;
             Text = item.Name; 
             FontColor = Color.White;
-            TTL = 2;
+            TTL = 1.5;
             Position = position;
             FontScale = 2;
         }

@@ -17,7 +17,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         private KeyboardState CurrentKeyboard { get; set; }
         private Dictionary<string, Animation> Animations { get; set; }
 
-        public double IFrames { get; } = 1.25;
+        public double IFrames { get; } = 0.8;
         public double IFramesTimer { get; set; }
         public bool CanTakeDamage => IFramesTimer > IFrames;
 
