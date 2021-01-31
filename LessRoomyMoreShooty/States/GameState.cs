@@ -154,13 +154,7 @@ namespace LessRoomyMoreShooty.States
             else
             {
                 Random random = new Random();
-                DoorsToSpawnAt = new List<Door>
-                {
-                    RightDoor,
-                    LeftDoor,
-                    TopDoor,
-                    BottomDoor
-                };
+                FillDoorList();
                 DoorsToSpawnAt.Remove(entry.Exit);
 
                 int enemyCount = (Level / 10) + 1;
@@ -186,6 +180,17 @@ namespace LessRoomyMoreShooty.States
             }
         }
 
+        private void FillDoorList()
+        {
+            DoorsToSpawnAt = new List<Door>
+                {
+                    RightDoor,
+                    LeftDoor,
+                    TopDoor,
+                    BottomDoor
+                };
+        }
+
         private void LevelEnd()
         {
             if (!TopDoor.IsOpen)
@@ -204,7 +209,13 @@ namespace LessRoomyMoreShooty.States
             {
                 if (EnemiesToSpawn.Count == 0) return;
 
-                Door door = DoorsToSpawnAt[i];
+                Random random = new Random();
+
+                if (DoorsToSpawnAt.Count == 0) FillDoorList();
+
+                int doorIndex = random.Next(0, DoorsToSpawnAt.Count);
+                Door door = DoorsToSpawnAt[doorIndex];
+                DoorsToSpawnAt.RemoveAt(doorIndex);
                 Vector2 position = door.Position;
                 Enemy enemy = EnemiesToSpawn[^1];
 
