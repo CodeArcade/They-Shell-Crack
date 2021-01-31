@@ -47,6 +47,7 @@ namespace LessRoomyMoreShooty.States
                 {
                     if (component is Projectile) component.IsRemoved = true;
                     if (component is Enemy enemy) enemy.IsActive = false;
+                    if (component is Player) component.IsRemoved = true;
                 }
 
                 return;
