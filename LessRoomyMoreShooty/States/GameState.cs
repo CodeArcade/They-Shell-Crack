@@ -23,7 +23,8 @@ namespace LessRoomyMoreShooty.States
         public int RemainingLevelSeconds { get; set; }
         public double SecondTimer { get; set; }
         public bool IsGameOver { get; set; }
-        List<Enemy> EnemiesToSpawn = new List<Enemy>();
+
+        readonly List<Enemy> EnemiesToSpawn = new List<Enemy>();
         List<Door> DoorsToSpawnAt = new List<Door>();
 
         public Rectangle GameArea { get; set; } = new Rectangle(90, 240, 840, 450);
@@ -144,7 +145,7 @@ namespace LessRoomyMoreShooty.States
                 RemainingSeconds += RemainingLevelSeconds;
 
             Level++;
-            RemainingLevelSeconds = 15;
+            RemainingLevelSeconds = 12;
 
             if (Level % 5 == 0)
             {
@@ -205,7 +206,7 @@ namespace LessRoomyMoreShooty.States
 
                 Door door = DoorsToSpawnAt[i];
                 Vector2 position = door.Position;
-                Enemy enemy = EnemiesToSpawn[EnemiesToSpawn.Count - 1];
+                Enemy enemy = EnemiesToSpawn[^1];
 
                 enemy.LevelUp(Level);
 

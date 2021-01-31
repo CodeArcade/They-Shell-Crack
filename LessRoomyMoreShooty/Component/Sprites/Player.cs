@@ -58,7 +58,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             AttackSpeedInSeconds = 0.3;
             AttackSpeedTimer = AttackSpeedInSeconds;
             Spread = 3;
-            RangeInSeconds = 2;
+            RangeInSeconds = 1.6;
             ProjectileSpeed = 300;
             ProjectileCount = 1;
             Damage = 1;

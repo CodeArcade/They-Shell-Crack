@@ -8,6 +8,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <AssemblyName>They Shall Crack</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Component\Sprites\Item\StatUpItems\DamageUpItem - Kopieren %282%29.cs" />

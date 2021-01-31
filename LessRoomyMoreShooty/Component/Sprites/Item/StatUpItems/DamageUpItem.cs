@@ -13,7 +13,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Item
         public override void OnPickup(Player player)
         {
             player.Damage += 1;
-            player.RangeInSeconds -= 0.1f;
+            player.RangeInSeconds -= 0.08f;
 
             if (player.RangeInSeconds <= 0.25f) player.RangeInSeconds = 0.25f;
         }
