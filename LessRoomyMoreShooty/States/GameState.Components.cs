@@ -44,7 +44,7 @@ namespace LessRoomyMoreShooty.States
                 Texture = ContentManager.HeartTexture,
                 Size = new Size(30, 30),
                 Collide = false
-            }, 0);
+            }, 1);
 
             AddComponent(new Label(ContentManager.KenneyMini)
             {
@@ -53,7 +53,7 @@ namespace LessRoomyMoreShooty.States
                 Position = new Vector2(220 + xOffset, 50),
                 FontScale = 1.5f,
                 FontColor = Color.White
-            }, 0);
+            }, 1);
 
             xOffset = 25;
 
@@ -63,7 +63,7 @@ namespace LessRoomyMoreShooty.States
                 Texture = ContentManager.BulletsTexture,
                 Size = new Size(30, 30),
                 Collide = false
-            }, 0);
+            }, 1);
 
             AddComponent(new Label(ContentManager.KenneyMini)
             {
@@ -72,7 +72,7 @@ namespace LessRoomyMoreShooty.States
                 Position = new Vector2(390 + xOffset, 50),
                 FontScale = 1.5f,
                 FontColor = Color.White
-            }, 0);
+            }, 1);
 
             xOffset = 100;
 
@@ -83,7 +83,7 @@ namespace LessRoomyMoreShooty.States
                 Position = new Vector2(535 + xOffset, 50),
                 FontScale = 1.5f,
                 FontColor = Color.White
-            }, 0);
+            }, 1);
 
             xOffset = 175;
 
@@ -93,7 +93,7 @@ namespace LessRoomyMoreShooty.States
                 Texture = ContentManager.ClockTexture,
                 Size = new Size(30, 30),
                 Collide = false
-            }, 0);
+            }, 1);
 
             AddComponent(new Label(ContentManager.KenneyMini)
             {
@@ -102,7 +102,7 @@ namespace LessRoomyMoreShooty.States
                 Position = new Vector2(690 + xOffset, 50),
                 FontScale = 1.5f,
                 FontColor = Color.White
-            }, 0);
+            }, 1);
         }
 
         private void AddDoors()

@@ -9,6 +9,15 @@ using Color = Microsoft.Xna.Framework.Color;
 
 namespace LessRoomyMoreShooty.Component.Sprites
 {
+
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
     public class Entity : Sprite
     {
         public int MaxHealth { get; set; }

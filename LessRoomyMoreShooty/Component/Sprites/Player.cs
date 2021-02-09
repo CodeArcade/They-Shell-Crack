@@ -12,7 +12,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 {
     public class Player : Entity
     {
-        private readonly AnimationManager GunAnimationManager;
+        public readonly AnimationManager GunAnimationManager;
 
         private KeyboardState CurrentKeyboard { get; set; }
         private Dictionary<string, Animation> Animations { get; set; }
@@ -197,37 +197,56 @@ namespace LessRoomyMoreShooty.Component.Sprites
         {
             if (IsKeyDown(ShootLeft))
             {
-                GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
-                GunAnimationManager.Rotation = 0;
-                GunAnimationManager.Flip = true;
+                UpdateGunPosition(Sprites.Direction.Left);
                 UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(-1, 0));
             }
             else if (IsKeyDown(ShootRight))
             {
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
-                GunAnimationManager.Rotation = 0;
-                GunAnimationManager.Flip = false;
+                UpdateGunPosition(Sprites.Direction.Right);
                 UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(1, 0));
             }
             else if (IsKeyDown(ShootUp))
             {
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
-                GunAnimationManager.Rotation = -90;
-                GunAnimationManager.Flip = false;
+                UpdateGunPosition(Sprites.Direction.Up);
                 UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(0, -1));
             }
             else if (IsKeyDown(ShootDown))
             {
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
-                GunAnimationManager.Rotation = 90;
-                GunAnimationManager.Flip = false;
+                UpdateGunPosition(Sprites.Direction.Down);
                 UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(0, 1));
             }
             else { return; }
+        }
+
+        public void UpdateGunPosition(Direction direction)
+        {
+            switch(direction)
+            {
+                case Sprites.Direction.Up:
+                    GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
+                    GunAnimationManager.Rotation = -90;
+                    GunAnimationManager.Flip = false;
+                    break;
+                case Sprites.Direction.Down:
+                    GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
+                    GunAnimationManager.Rotation = 90;
+                    GunAnimationManager.Flip = false;
+                    break;
+                case Sprites.Direction.Left:
+                    GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
+                    GunAnimationManager.Rotation = 0;
+                    GunAnimationManager.Flip = true;
+                    break;
+                case Sprites.Direction.Right:
+                    GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
+                    GunAnimationManager.Rotation = 0;
+                    GunAnimationManager.Flip = false;
+                    break;
+            }
         }
 
         protected override void Shoot(GameTime gameTime, Vector2 direction, int bulletCount = -1, Texture2D texture = null, Size? size = null, SoundEffect soundEffect = null)

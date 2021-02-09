@@ -125,7 +125,7 @@ namespace LessRoomyMoreShooty.States
                 $"{(RemainingLevelSeconds % 60).ToString().PadLeft(2, '0')}");
         }
 
-        private Label GetLabel(string name) => (Label)Layers[0].FirstOrDefault(x => x is Label label && label.Name == name);
+        private Label GetLabel(string name) => (Label)Layers[1].FirstOrDefault(x => x is Label label && label.Name == name);
 
         private bool AreEnemiesAlive() => Layers[0].Any(x => x is Enemy);
         private bool AreItemsPresent() => Layers[0].Any(x => x is Item);
@@ -141,7 +141,11 @@ namespace LessRoomyMoreShooty.States
             RightDoor.IsOpen = false;
 
             Door entry = (Door)sender;
-            Player.Position = new Vector2(entry.Exit.Position.X - (entry == LeftDoor ? Player.Size.Width : 0), entry.Exit.Position.Y - (entry == TopDoor ? Player.Size.Height : 0));
+            Player.Position = new Vector2(entry.Exit.Position.X - (entry == LeftDoor ? Player.Size.Width + 20 : -20), entry.Exit.Position.Y - (entry == TopDoor ? Player.Size.Height + 20: -20));
+            if (entry == TopDoor) Player.UpdateGunPosition(Direction.Up);
+            else if (entry == BottomDoor) Player.UpdateGunPosition(Direction.Down);
+            else if (entry == LeftDoor) Player.UpdateGunPosition(Direction.Left);
+            else Player.UpdateGunPosition(Direction.Right);
 
             if (RemainingSeconds > 0)
                 RemainingSeconds += RemainingLevelSeconds;
