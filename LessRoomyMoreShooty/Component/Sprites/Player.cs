@@ -72,10 +72,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             GunAnimationManager = new AnimationManager()
             {
-                Scale = 0.5f
+                Scale = 0.5f,
+                IsPlaying = true
             };
             GunAnimationManager.Play(new Animation(ContentManager.GunTexture, 1));
             GunAnimationManager.Position = new Vector2(-20, -20);
+            UpdateMuzzlePoint();
         }
 
         public override void Update(GameTime gameTime)
@@ -96,7 +98,6 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (GunAnimationManager.IsPlaying) GunAnimationManager.Update(gameTime);
             base.Update(gameTime);
-            MuzzlePoint = GunAnimationManager.Position;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -183,6 +184,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
             }
 
             if (Speed < MaxSpeed) Speed += Acceleration;
+            if (Direction == new Vector2(0, 0)) AnimationManager.Play(Animations["idle"]);
         }
 
         private void Decelerate()
@@ -193,12 +195,12 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         private void Shoot(GameTime gameTime)
         {
-
             if (IsKeyDown(ShootLeft))
             {
                 GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
                 GunAnimationManager.Rotation = 0;
                 GunAnimationManager.Flip = true;
+                UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(-1, 0));
             }
             else if (IsKeyDown(ShootRight))
@@ -206,6 +208,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
                 GunAnimationManager.Rotation = 0;
                 GunAnimationManager.Flip = false;
+                UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(1, 0));
             }
             else if (IsKeyDown(ShootUp))
@@ -213,6 +216,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
                 GunAnimationManager.Rotation = -90;
                 GunAnimationManager.Flip = false;
+                UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(0, -1));
             }
             else if (IsKeyDown(ShootDown))
@@ -220,6 +224,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
                 GunAnimationManager.Rotation = 90;
                 GunAnimationManager.Flip = false;
+                UpdateMuzzlePoint();
                 Shoot(gameTime, new Vector2(0, 1));
             }
             else { return; }
@@ -244,6 +249,21 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             IFramesTimer = 0;
             base.TakeDamage(damage);
+        }
+
+        private void UpdateMuzzlePoint()
+        {
+            if (GunAnimationManager.Rotation == 0)
+            {
+                MuzzlePoint = GunAnimationManager.Flip ?
+                GunAnimationManager.Position :
+                new Vector2(GunAnimationManager.Position.X + GunAnimationManager.AnimationRectangle.Width, GunAnimationManager.Position.Y + 6);
+            } else
+            {
+                MuzzlePoint = GunAnimationManager.Rotation > 0 ? 
+                    new Vector2(GunAnimationManager.Position.X - 20, GunAnimationManager.Position.Y + GunAnimationManager.AnimationRectangle.Height) :
+                    new Vector2(GunAnimationManager.Position.X - 10, GunAnimationManager.Position.Y - GunAnimationManager.AnimationRectangle.Height - 10);
+            }
         }
 
     }
