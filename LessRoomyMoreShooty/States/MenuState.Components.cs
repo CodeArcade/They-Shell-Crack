@@ -21,7 +21,7 @@ namespace LessRoomyMoreShooty.States
             {
                 StateManager.ChangeTo<GameState>(GameState.Name);
             };
-            AddComponent(button);
+            AddComponent(button, 1);
         }
 
     }

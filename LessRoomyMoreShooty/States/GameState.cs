@@ -43,11 +43,12 @@ namespace LessRoomyMoreShooty.States
             {
                 AddGameOverUi();
 
-                foreach (Component.Component component in Components)
+                foreach (Component.Component component in Layers[0])
                 {
                     if (component is Projectile) component.IsRemoved = true;
                     if (component is Enemy enemy) enemy.IsActive = false;
                     if (component is Player) component.IsRemoved = true;
+                    if (component is Item) component.IsRemoved = true;
                 }
 
                 return;
@@ -68,7 +69,7 @@ namespace LessRoomyMoreShooty.States
                 IsGameOver = true;
             }
 
-            foreach (Component.Component component in Components)
+            foreach (Component.Component component in Layers[0])
                 if (component is Enemy enemy) enemy.IsActive = true;
         }
 
@@ -76,7 +77,7 @@ namespace LessRoomyMoreShooty.States
         {
             base.PostUpdate(gameTime);
 
-            if (!Components.Any(x => x is Player))
+            if (!Layers[0].Any(x => x is Player))
             {
                 IsGameOver = true;
                 return;
@@ -124,14 +125,14 @@ namespace LessRoomyMoreShooty.States
                 $"{(RemainingLevelSeconds % 60).ToString().PadLeft(2, '0')}");
         }
 
-        private Label GetLabel(string name) => (Label)Components.FirstOrDefault(x => x is Label label && label.Name == name);
+        private Label GetLabel(string name) => (Label)Layers[0].FirstOrDefault(x => x is Label label && label.Name == name);
 
-        private bool AreEnemiesAlive() => Components.Any(x => x is Enemy);
-        private bool AreItemsPresent() => Components.Any(x => x is Item);
+        private bool AreEnemiesAlive() => Layers[0].Any(x => x is Enemy);
+        private bool AreItemsPresent() => Layers[0].Any(x => x is Item);
 
         private void PlayerEnteredDoor(object sender, EventArgs e)
         {
-            foreach (Component.Component c in Components.Where(x => x is Projectile))
+            foreach (Component.Component c in Layers[0].Where(x => x is Projectile))
                 c.IsRemoved = true;
 
             TopDoor.IsOpen = false;
@@ -238,7 +239,7 @@ namespace LessRoomyMoreShooty.States
                 {
                     enemy.Position = new Vector2(position.X, position.Y - (enemy.Size.Height * 1.5f));
                 }
-                AddComponent(enemy);
+                AddComponent(enemy, 0);
                 EnemiesToSpawn.Remove(enemy);
             }
 

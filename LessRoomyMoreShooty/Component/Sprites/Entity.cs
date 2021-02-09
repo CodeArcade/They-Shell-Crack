@@ -96,7 +96,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
                 AudioManager.PlayEffect(soundEffect, 0.15f);
 
             for (int i = 0; i < (bulletCount <= 0 ? ProjectileCount : bulletCount); i++)
-                CurrentState.AddComponent(new Projectile(direction, this, texture, size));
+                CurrentState.AddComponent(new Projectile(direction, this, texture, size), 0);
         }
 
         public override void OnCollision(Sprite sprite, GameTime gameTime)
@@ -128,7 +128,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public virtual void TakeDamage(int damage)
         {
-            CurrentState.AddComponent(new DamageNumber(damage, Position));
+            CurrentState.AddComponent(new DamageNumber(damage, Position), 0);
 
             CurrentHealth -= damage;
         }

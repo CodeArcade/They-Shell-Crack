@@ -12,6 +12,7 @@ namespace LessRoomyMoreShooty.States
     {
         #region Fields
 
+        public List<Component.Component>[] Layers { get; set; }
         public List<Component.Component> Components { get; set; }
 
         [Dependency]
@@ -32,22 +33,28 @@ namespace LessRoomyMoreShooty.States
 
         #region Methods
 
-        public void Load() { Components = new List<Component.Component>(); LoadComponents(); OnLoad(); HasLoaded = true; }
+        public void Load() { Layers = new List<Component.Component>[] { new List<Component.Component>(), new List<Component.Component>() } ; LoadComponents(); OnLoad(); HasLoaded = true; }
 
         protected virtual void LoadComponents() { }
         protected virtual void OnLoad() { }
 
-        public void AddComponent(Component.Component component)
+        public void AddComponent(Component.Component component, int layer)
         {
             component.CurrentState = this;
-            Components.Add(component);
+            Layers[layer].Add(component);
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (Components is null) return;
+            if (Layers[0] is null && Layers[1] is null) return;
             // draw components from top to bottom
-            List<Component.Component> DrawOrder = Components.OrderByDescending(c => c.Position.Y).ToList();
+            List<Component.Component> DrawOrder = Layers[0].OrderByDescending(c => c.Position.Y).ToList();
+            for (int i = DrawOrder.Count - 1; i >= 0; i--)
+            {
+                DrawOrder[i].Draw(gameTime, spriteBatch);
+            }
+
+            DrawOrder = Layers[1].OrderByDescending(c => c.Position.Y).ToList();
             for (int i = DrawOrder.Count - 1; i >= 0; i--)
             {
                 DrawOrder[i].Draw(gameTime, spriteBatch);
@@ -56,21 +63,27 @@ namespace LessRoomyMoreShooty.States
 
         public virtual void PostUpdate(GameTime gameTime)
         {
-            if (Components is null) return;
-            for (int i = Components.Count - 1; i >= 0; i--)
+            if (Layers[0] is null && Layers[1] is null) return;
+            foreach(List<Component.Component> components in Layers)
             {
-                if (Components[i].IsRemoved) Components.RemoveAt(i);
+                for (int i = components.Count - 1; i >= 0; i--)
+                {
+                    if (components[i].IsRemoved) components.RemoveAt(i);
+                }
             }
         }
 
         public virtual void Update(GameTime gameTime)
         {
             AudioManager.Update();
-            if (Components is null) return;
+            if (Layers[0] is null && Layers[1] is null) return;
 
-            for (int i = Components.Count - 1; i >= 0; i--)
+            foreach(List<Component.Component> components in Layers)
             {
-                Components[i].Update(gameTime);
+                for (int i = components.Count - 1; i >= 0; i--)
+                {
+                    components[i].Update(gameTime);
+                }
             }
 
             CollisionCheck(gameTime);
@@ -78,7 +91,7 @@ namespace LessRoomyMoreShooty.States
 
         private void CollisionCheck(GameTime gameTime)
         {
-            IEnumerable<Sprite> sprites = Components.Where(x => x is Sprite).Select(x => x as Sprite).ToList();
+            IEnumerable<Sprite> sprites = Layers[0].Where(x => x is Sprite).Select(x => x as Sprite).ToList();
             foreach (Sprite sprite in sprites)
             {
                 foreach (Sprite sprite2 in sprites)

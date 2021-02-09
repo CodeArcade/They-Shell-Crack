@@ -23,7 +23,7 @@ namespace LessRoomyMoreShooty.Component.Sprites.Item
         {
             if (!(sprite is Player) || IsRemoved) return;
 
-            CurrentState.AddComponent(new ItemPickUp(this, Position));
+            CurrentState.AddComponent(new ItemPickUp(this, Position), 0);
 
             IsRemoved = true;
             AudioManager.PlayEffect(ContentManager.ItemPickUpSoundEffect, 0.25f);
