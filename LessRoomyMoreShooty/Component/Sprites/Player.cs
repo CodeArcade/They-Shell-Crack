@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Color = Microsoft.Xna.Framework.Color;
@@ -32,6 +33,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
         public Keys ShootRight { get; set; } = Keys.Right;
         public Keys ShootUp { get; set; } = Keys.Up;
         public Keys ShootDown { get; set; } = Keys.Down;
+        public bool useController = false;
 
         public Player()
         {
@@ -82,6 +84,7 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         public override void Update(GameTime gameTime)
         {
+            useController = Controller.IsInUse();
             IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
             CurrentKeyboard = Keyboard.GetState();
@@ -131,7 +134,49 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
         private void Move()
         {
+            if (useController)
+            {
+                ControllerMove();
+            } 
+            else
+            {
+                KeyboardMove();
+            }
 
+            if (Speed < MaxSpeed) Speed += Acceleration;
+            if (Direction == Vector2.Zero) AnimationManager.Play(Animations["idle"]);
+        }
+
+        private void ControllerMove()
+        {
+            Vector2 leftStick = GamePad.GetState(0).ThumbSticks.Left;
+            Direction = leftStick;
+            
+            // moving primarily left or right
+            if (Math.Abs(leftStick.X) > Math.Abs(leftStick.Y))
+            {
+                if (leftStick.X < 0)
+                {
+                    UpdateGunPosition(Sprites.Direction.Right);
+                    return;
+                }
+
+                UpdateGunPosition(Sprites.Direction.Left);
+                return;
+            }
+            
+            // moving primarily up or down
+            if (leftStick.Y < 0)
+            {
+                UpdateGunPosition(Sprites.Direction.Up);
+                return;
+            }
+
+            UpdateGunPosition(Sprites.Direction.Down);
+        }
+
+        private void KeyboardMove()
+        {
             if (!IsKeyDown(Left) && !IsKeyDown(Right) && !IsKeyDown(Up) && !IsKeyDown(Down))
             {
                 AnimationManager.Play(Animations["idle"]);
@@ -141,18 +186,14 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Left) && !IsKeyDown(Right))
             {
-                GunAnimationManager.Rotation = 0;
-                GunAnimationManager.Flip = true;
-                GunAnimationManager.Position = new Vector2(Position.X - 20, Position.Y + Size.Height / 1.8f);
+                UpdateGunPosition(Sprites.Direction.Left);
                 AnimationManager.Flip = true;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(-1, Direction.Y);
             }
             else if (IsKeyDown(Right) && !IsKeyDown(Left))
             {
-                GunAnimationManager.Rotation = 0;
-                GunAnimationManager.Flip = false;
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width - 20, Position.Y + Size.Height / 1.8f);
+                UpdateGunPosition(Sprites.Direction.Right);
                 AnimationManager.Flip = false;
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(1, Direction.Y);
@@ -164,17 +205,13 @@ namespace LessRoomyMoreShooty.Component.Sprites
 
             if (IsKeyDown(Up) && !IsKeyDown(Down))
             {
-                GunAnimationManager.Rotation = -90;
-                GunAnimationManager.Flip = false;
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + 20);
+                UpdateGunPosition(Sprites.Direction.Up);
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, -1);
             }
             else if (IsKeyDown(Down) && !IsKeyDown(Up))
             {
-                GunAnimationManager.Rotation = 90;
-                GunAnimationManager.Flip = false;
-                GunAnimationManager.Position = new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height - 20);
+                UpdateGunPosition(Sprites.Direction.Down);
                 AnimationManager.Play(Animations["walk"]);
                 Direction = new Vector2(Direction.X, 1);
             }
@@ -182,14 +219,11 @@ namespace LessRoomyMoreShooty.Component.Sprites
             {
                 Direction = new Vector2(Direction.X, 0);
             }
-
-            if (Speed < MaxSpeed) Speed += Acceleration;
-            if (Direction == new Vector2(0, 0)) AnimationManager.Play(Animations["idle"]);
         }
 
         private void Decelerate()
         {
-            if (Speed <= 0) Direction = new Vector2(0, 0);
+            if (Speed <= 0) Direction = Vector2.Zero;
             if (Speed > 0) Speed -= Acceleration / 3;
         }
 
@@ -284,6 +318,5 @@ namespace LessRoomyMoreShooty.Component.Sprites
                     new Vector2(GunAnimationManager.Position.X - 10, GunAnimationManager.Position.Y - GunAnimationManager.AnimationRectangle.Height - 10);
             }
         }
-
     }
-}
+} 

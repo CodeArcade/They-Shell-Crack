@@ -99,6 +99,11 @@ namespace LessRoomyMoreShooty.Component.Controls
                     OnClick?.Invoke(this, new EventArgs());
                 }
             }
+
+            if (Models.Controller.IsNonDirectionButtonPressed())
+            {
+                OnClick?.Invoke(this, new EventArgs());
+            }
         }
     }
 }
